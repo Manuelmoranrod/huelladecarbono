@@ -1,13 +1,18 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header/Header';
-import Home from './components/Home/Home';
+import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
+import './styles/styles.scss'
+
 
 function App() {
   return (
     <div>
-      <Header />
-      <Home />
+      <BrowserRouter>
+        <Header />
+        <Main />
+      </BrowserRouter>
       <Footer />
     </div>
   );
