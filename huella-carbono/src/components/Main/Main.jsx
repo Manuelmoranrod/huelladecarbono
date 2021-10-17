@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from 'react-router-dom';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
+import Error from '../Error/Error';
 
 const Main = () => {
   return (
