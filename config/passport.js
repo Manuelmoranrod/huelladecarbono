@@ -1,7 +1,7 @@
 const passport = require('passport')
 const localStrategy = require('passport-local').Strategy
 const pool = require('../utils/postgresdb');
-const bcrypt = require('bcrypt')
+
 
 
 // Definimos una nueva Strategy de identificacion, definimos la autorización, en esta caso para local
