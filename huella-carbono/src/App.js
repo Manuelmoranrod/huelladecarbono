@@ -14,15 +14,7 @@ function App() {
   const [user, setUser] = useState(null)
 
   return (
-<<<<<<< HEAD
     <div className="App">
-      <BrowserRouter>
-        <Header />
-        <Main />
-      </BrowserRouter>
-      <Footer />
-=======
-    <div>
       <userContext.Provider value={{user, setUser}}>
         <BrowserRouter>
           <Header />
@@ -30,7 +22,6 @@ function App() {
         </BrowserRouter>
         <Footer />
       </userContext.Provider>
->>>>>>> 0496a48b3a650b71021656bd4c1a4adf12d41d1c
     </div>
   );
 }

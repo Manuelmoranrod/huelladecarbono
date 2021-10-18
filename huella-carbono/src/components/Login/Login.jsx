@@ -37,26 +37,26 @@ const Login = () => {
 
   return (
     <div className="form">
-    <form className="form-login" onSubmit={handleSubmit}>
-      <label>
-        <p>Email</p>
-        <input type="text" name="email" />
-      </label>
-      <label>
-        <p>Password</p>
-        <input type="password" name="password" />
-      </label>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-      <GoogleLogin
-        clientId="302295141577-ro76q0pd5jfle7v6hh6q7on7b1j017sl.apps.googleusercontent.com"
-        buttonText="Iniciar sesión con Google"
-        onSuccess={loginGoogle}
-        onFailure={loginGoogle}
-        cookiePolicy={'single_host_origin'}
-      />
-    </form>
+      <form className="form-login" onSubmit={handleSubmit}>
+        <label>
+          <p>Email</p>
+          <input type="text" name="email" />
+        </label>
+        <label>
+          <p>Password</p>
+          <input type="password" name="password" />
+        </label>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+        <GoogleLogin
+          clientId="302295141577-ro76q0pd5jfle7v6hh6q7on7b1j017sl.apps.googleusercontent.com"
+          buttonText="Iniciar sesión con Google"
+          onSuccess={loginGoogle}
+          onFailure={loginGoogle}
+          cookiePolicy={'single_host_origin'}
+        />
+      </form>
     </div>
 
   );
