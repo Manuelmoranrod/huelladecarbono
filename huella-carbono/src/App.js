@@ -8,7 +8,7 @@ import './styles/styles.scss'
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <BrowserRouter>
         <Header />
         <Main />
