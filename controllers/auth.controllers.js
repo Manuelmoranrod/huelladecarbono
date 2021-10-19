@@ -1,8 +1,5 @@
 const users = require('../models/users_psb')
-// const bcrypt = require('bcrypt')
 const CryptoJS = require("crypto-js");
-const crypto = require("crypto");
-const SHA256 = require("crypto-js/sha256");
 const jwt = require('jsonwebtoken')
 
 const authControllers = {
@@ -13,13 +10,27 @@ const authControllers = {
         const searchUser = await users.getOnlyOneUser(email)
 
         if (searchUser) {
-            res.json({ message: 'Usuario ya registrado' })
+            res.status(400).json({ message: 'Usuario ya registrado' })
         } else {
             const passwordHash = CryptoJS.HmacSHA256(password, process.env.SECRET_SHA256).toString()
 
             const newUser = await users.createUser(name, surname, email, passwordHash)
 
-            res.status(200)
+            const user = await users.getOnlyOneUser(email)
+
+            const userForToken = {
+                id: user.id,
+                email: user.email,
+            }
+
+            const token = jwt.sign(userForToken, process.env.JWT, {
+                expiresIn: '7d'
+            })
+
+            res.send({
+                name: user.name,
+                token
+            })
         }
     },
 
@@ -37,7 +48,9 @@ const authControllers = {
                 email: user.email,
             }
 
-            const token = jwt.sign(userForToken, process.env.JWT)
+            const token = jwt.sign(userForToken, process.env.JWT, {
+                expiresIn: '7d'
+            })
 
             res.send({
                 name: user.name,
@@ -48,7 +61,50 @@ const authControllers = {
                 error: 'Usuario o contraseña invalidos'
             })
         }
-    }
+    },
+
+    postLoginGoogle: async (req, res) => {
+        const { email, password, name, surname } = req.body
+
+        let user = await users.getOnlyOneUser(email)
+
+        if (user !== undefined) {
+            const userForToken = {
+                id: user.id,
+                email: user.email,
+            }
+
+            const token = jwt.sign(userForToken, process.env.JWT, {
+                expiresIn: '7d'
+            })
+
+            res.send({
+                name: user.name,
+                token
+            })
+        } else {
+            const passwordHash = CryptoJS.HmacSHA256(password, process.env.SECRET_SHA256).toString()
+
+            const newUser = await users.createUser(name, surname, email, passwordHash)
+            user = await users.getOnlyOneUser(email)
+
+            const userForToken = {
+                id: user.id,
+                email: user.email,
+            }
+
+            const token = jwt.sign(userForToken, process.env.JWT, {
+                expiresIn: '7d'
+            })
+
+            res.send({
+                name: user.name,
+                token
+            })
+
+            res.status(200)
+        }
+    },
 }
 
 // authControllers.test()
