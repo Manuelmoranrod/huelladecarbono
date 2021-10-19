@@ -31,10 +31,6 @@ const Login = () => {
     console.log(resGoogle);
   }
 
-  const logoutSucces = (respuesta) => {
-    console.log('desconectadp');
-  }
-
   return (
     <div className="form">
       <form className="form-login" onSubmit={handleSubmit}>
