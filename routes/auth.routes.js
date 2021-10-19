@@ -1,18 +1,9 @@
 const router = require('express').Router()
 const passport = require('passport')
+const authControllers = require('../controllers/auth.controllers')
 
+router.post('/register', authControllers.postRegister)
 
-// Login
-router.post('/login', passport.authenticate('local', { 
-    successRedirect: '/',
-    failureRedirect: '/auth/login',
-}))
-
-// Logout
-router.get('/logout', (req, res) => {
-    req.logOut() // Metodo de passport que nos permite hacer desconexion de la session
-    res.redirect('/')
-})
-
+router.post('/login', authControllers.postLogin)
 
 module.exports = router

@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      <userContext.Provider value={{user, setUser}}>
+      <userContext.Provider value={{ user, setUser }}>
         <BrowserRouter>
           <Header />
           <Main />
