@@ -33,11 +33,9 @@ const LoginGoogle = () => {
 
   const handleLoginGoogleError = (resGoogle) => console.log(resGoogle);
 
-  console.log(process.env.REACT_APP_CLIENTID_GOOGLE);
-
   return (
     <GoogleLogin
-      clientId='302295141577-ro76q0pd5jfle7v6hh6q7on7b1j017sl.apps.googleusercontent.com'
+      clientId={process.env.REACT_APP_CLIENTID_GOOGLE}
       buttonText="Iniciar sesión con Google"
       onSuccess={handleLoginGoogle}
       onFailure={handleLoginGoogleError}
