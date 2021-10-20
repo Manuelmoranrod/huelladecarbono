@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
 import Error from '../Error/Error';
-import Register from "../register/register";
+import Register from "../Register";
 
 const Main = () => {
   return (

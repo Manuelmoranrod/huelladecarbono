@@ -2,78 +2,44 @@ const pool = require('../utils/postgresdb');
 
 const users = {
 
-    // RECUPERA TODOS LOS USUARIOS DE LA DB
-    getUsers: async () => {
-
-        let client, result;
-        try {
-            client = await pool.connect();
-            result = await client.query(`
-            SELECT * FROM users
-            `)
-            // console.log(result);
-            return result
-        } catch (err) {
-            console.log(err);
-        } finally {
-            client.release();
-        }
-    },
-
     getOnlyOneUser: async (email) => {
 
-        let client, result;
+        let client
         try {
             //Connect
             client = await pool.connect();
 
-            const result =  await client.query(`SELECT * FROM users 
+            const result = await client.query(`SELECT * FROM users 
             WHERE email = $1
-            `,[email])
+            `, [email])
 
-        return result.rows[0] 
-
-
+            return result.rows[0]
         } catch (err) {
             console.log(err);
         } finally {
-            client.release();
+            await client.release();
         }
     },
 
     // PERMITE REGISTRAR UN USUARIO EN LA BD
-    createUser: async (name,email,password) => {
+    createUser: async (name, surname, email, password) => {
 
-        let client, result;
+        let client
         try {
             client = await pool.connect();
-            result = await client.query(`
-            INSERT INTO users (name,email,password)
-            VALUES ($1,$2,$3)
-            `, [name,email,password])
+
+            let result = await client.query(`
+            INSERT INTO users (name,surname,email,password)
+            VALUES ($1,$2,$3,$4)
+            `, [name, surname, email, password])
+
             return result
         } catch (err) {
             console.log(err);
         } finally {
-            client.release();
+            await client.release();
         }
     },
-    getUserForEmail: async (email) => {
-        let client, result;
-        try {
-            client = await pool.connect();
-            result = await client.query(`
-            SELECT from users
-            WHERE email = $1;
-            `, [email])
-            // console.log(result);
-            return result.rows
-        } catch (err) {
-            console.log(err);
-        } finally {
-            client.release();
-        }
-    }
 }
 
 
@@ -117,4 +83,5 @@ VALUES ('Ivan','Quesada','quesada@gmail.com','jaen')  */
 //     FOREIGN KEY (id_user) REFERENCES users(id_user),
 //     FOREIGN KEY (id_favorites) REFERENCES favorites(id_favorites)
 // )
+
 

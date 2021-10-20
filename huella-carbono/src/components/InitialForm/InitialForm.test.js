@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Register from "./Register";
+import InitialForm from "./InitialForm";
 
-describe("Register", () => {
+describe("InitialForm", () => {
   test("matches snapshot", () => {
-    const wrapper = shallow(<Register />);
+    const wrapper = shallow(<InitialForm />);
     expect(wrapper).toMatchSnapshot();
   });
 });
