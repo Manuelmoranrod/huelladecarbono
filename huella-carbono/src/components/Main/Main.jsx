@@ -4,6 +4,7 @@ import Home from '../Home/Home';
 import Login from '../Login/Login';
 import Error from '../Error/Error';
 import Register from "../Register";
+import Profile from "../Profile";
 
 const Main = () => {
   return (
@@ -12,6 +13,7 @@ const Main = () => {
         <Route path="/" component={Home} exact />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/profile" component={Profile} />
         <Route component={Error} />
       </Switch>
     </div>
