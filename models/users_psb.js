@@ -118,4 +118,3 @@ VALUES ('Ivan','Quesada','quesada@gmail.com','jaen')  */
 //     FOREIGN KEY (id_favorites) REFERENCES favorites(id_favorites)
 // )
 
-module.exports = users 
