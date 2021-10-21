@@ -1,12 +1,14 @@
 .initial-form {
     background-color: rgb(247, 247, 247);
-    width: 450px;
-    min-height: 200px;
+    width: 80%;
+    min-height: 500px;
     height: min-content;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 20px;
+    margin-left: 30px;
     box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 .score-section {
     display: flex;
@@ -17,19 +19,20 @@
   /* QUESTION/TIMER/LEFT SECTION */
   .question-section {
     width: 100%;
-    position: relative;
+    
   }
   
-  .question-count {
+  .question-type {
     margin-bottom: 20px;
   }
   
   .question-count span {
-    font-size: 28px;
+    font-size: 20px;
   }
   
   .question-text {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
+    font-size: 20px;
   }
   
   .timer-text {
@@ -54,13 +57,12 @@
     width: 100%;
     font-size: 16px;
     color: #ffffff;
-    background-color: #252d4a;
-    border-radius: 15px;
+    background-color: #575a64;
     display: flex;
     padding: 5px;
     justify-content: flex-start;
     align-items: center;
-    border: 5px solid #234668;
+    border: 5px solid #4c4e50;
     cursor: pointer;
   }
   

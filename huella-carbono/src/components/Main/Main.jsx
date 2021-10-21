@@ -3,8 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
 import Error from '../Error/Error';
-import Register from "../Register";
-import Profile from "../Profile";
+import Register from "../Register/Register";
+import Profile from "../Profile/Profile";
 
 const Main = () => {
   return (

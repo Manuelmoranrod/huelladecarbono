@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const InitialForm = () => {
   const questions = [
 		{
-			questionText: 'Cuantos vuelos coges al año',
+			questionText: 'Cuantos vuelos coges al año?',
 			answerOptions: [
 				{ answerText: '1', isCorrect: false },
 				{ answerText: '2', isCorrect: false },
@@ -61,13 +61,16 @@ const InitialForm = () => {
     <div className='initial-form'>
 			{showScore ? (
 				<div className='score-section'>
-					You scored {score} out of {questions.length}
+					Your CO2 kg is {score} 
 				</div>
 			) : (
 				<>
 					<div className='question-section'>
-						<div className='question-count'>
-							<span>Question {currentQuestion + 1}</span>/{questions.length}
+						<div className='icon'>
+							ICON
+						</div>
+						<div className='question-type'>
+							<span>Alimentación, pregunta {currentQuestion + 1}</span>/{questions.length}
 						</div>
 						<div className='question-text'>{questions[currentQuestion].questionText}</div>
 					</div>
