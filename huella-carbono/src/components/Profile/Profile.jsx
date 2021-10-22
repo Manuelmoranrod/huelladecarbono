@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ApexCharts, { ReactApexChart } from 'apexcharts'
 import Chart from "react-apexcharts";
 
 import './Profile.css'
@@ -7,52 +6,41 @@ import './Profile.css'
 
 const options = {
   chart: {
-    height: 350,
+    height: 300,
     type: 'radialBar',
   },
   plotOptions: {
     radialBar: {
-      track: {
-        show: true,
-        // startAngle: undefined,
-        endAngle: 300,
-        background: '#ffffff',
-        // background: ['#bcd', '#aaa', '#000', '#fff'],
-        // strokeWidth: '50%',
-        // opacity: 1,
-        // margin: 5,
-        // dropShadow: {
-        //   enabled: false,
-        //   top: 0,
-        //   left: 0,
-        //   blur: 3,
-        //   opacity: 0.5
-        // }
+      size: undefined,
+      inverseOrder: true,
+      hollow: {
+        margin: 5,
+        size: '48%',
+        background: 'transparent',
+        
       },
-      dataLabels: {
-        name: {
-          fontSize: '22px',
-        },
-        value: {
-          fontSize: '16px',
-        },
-        total: {
-          show: true,
-          label: 'Co2',
-          formatter: function (w) {
-            // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-            return 249
-          }
-        }
-      }
-    }
+      track: {
+        background: '#eee',
+        show: true,
+      },
+      startAngle: 0,
+      endAngle: 320,
+    },
   },
-  labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+  stroke: {
+    lineCap: 'round'
+  },
+  // series: [71, 63, 77],
+  labels: ['June', 'May', 'April'],
+  legend: {
+    show: true,
+    floating: true,
+    position: 'right',
+    offsetX: 70,
+    offsetY: 240
+  },
   // colors: ['#FDDB3A', '#52575D', '#F6F4E6', '#41444B'],
 }
-
-
-
 
 const series = [44, 55, 67, 81]
 
@@ -64,12 +52,41 @@ const Profile = () => {
   return (
     <div className="profile">
       <div className="profile-content">
-        <Chart
-          options={options}
-          series={series}
-          type="radialBar"
-          width="350"
-        />
+        <h1>Hola Alias,</h1>
+        <p className="p-co2">Tu medida de <br /> emisiones semanales</p>
+        <span className="span-co2">147 kg</span>
+
+        <div className="div-mid-spain-button">
+          <div>
+            <p>170kg CO2</p>
+            <span>Persona media en España</span>
+          </div>
+          <button>Track diario</button>
+        </div>
+
+        <div className="div-chart-percentage">
+
+          <Chart
+            options={options}
+            series={series}
+            type="radialBar"
+            width="300"
+          />
+
+          <div>
+              <p>Alimenación 30%</p>
+              <p>Transporte 70%</p>
+              <p>Hogar 15%</p>
+          </div>
+
+        </div>
+
+        <h2>Tu progreso</h2>
+
+        <p>ESTO ES UNA BARRA</p>
+
+        <button className="button-compensar">Compensar mi huella</button>
+
       </div>
     </div>
   );
