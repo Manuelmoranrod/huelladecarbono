@@ -1,0 +1,22 @@
+.nav-bar {
+    height: 50px;
+    width: 100%;
+    background-color: grey;
+    & > ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        > li{
+            list-style: none;
+
+            > a {
+                text-decoration: none;
+                font-size: 20px;
+            }
+            a:hover {
+                background-color: rgb(97, 95, 95);
+            }
+        }
+    }
+}
