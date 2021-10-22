@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Main from './components/Main';
-import Footer from './components/Footer';
 import './styles/styles.scss'
 
 // Context
 import userContext from './context/userContext'
+import Navbar from './components/Navbar/Navbar';
 
 
 function App() {
@@ -28,8 +28,8 @@ function App() {
         <BrowserRouter>
           <Header />
           <Main />
+          <Navbar />
         </BrowserRouter>
-        <Footer />
       </userContext.Provider>
     </div>
   );
