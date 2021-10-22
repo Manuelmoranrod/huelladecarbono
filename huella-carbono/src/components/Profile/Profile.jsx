@@ -62,8 +62,8 @@ const Profile = () => {
 
 
   return (
-    <div>
-      <div className="test">
+    <div className="profile">
+      <div className="profile-content">
         <Chart
           options={options}
           series={series}
