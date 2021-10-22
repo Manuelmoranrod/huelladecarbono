@@ -18,8 +18,6 @@ const LoginGoogle = () => {
 
     const objUser = {
       email,
-      name: givenName,
-      surname: familyName,
       password: googleId
     }
 

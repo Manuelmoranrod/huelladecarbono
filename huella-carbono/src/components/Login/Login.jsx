@@ -61,7 +61,7 @@ const Login = () => {
               </label>
               <button className="button-enviar" type="submit">Enviar</button>
               <div className="box-google-login">
-                <LoginGoogle className="" />
+                <LoginGoogle />
               </div>
               <Link>¿Aún no tienes cuenta? <b>Crea la tuya</b></Link>
             </form>
