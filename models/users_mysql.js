@@ -105,6 +105,23 @@ const users = {
         })
     },
 
+    updateUserGoogle: async (id, username,city) => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // conexionSQL.connect()
+                conexionSQL.query('UPDATE USER SET USER_NAME=?, CITY=? WHERE ID=?', [username, city, id] , function (err, results, fields) {
+                    if (err) return reject(err);
+                    console.log('results getonlyoneuser', results);
+                    return resolve(results)
+                })
+            } catch (err) {
+                console.log(err);
+            } finally {
+                // conexionSQL.end()
+            }
+        })
+    },
+
 
 }
 
