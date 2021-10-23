@@ -26,7 +26,7 @@ const LoginGoogle = () => {
 
       const token = response.data.token
       const firstTime = response.data.firstTime
-
+      console.log('firstime', firstTime);
       if (firstTime) {
         sessionStorage.setItem('token', token)
         setUser(token)
@@ -34,7 +34,7 @@ const LoginGoogle = () => {
       } else {
         sessionStorage.setItem('token', token)
         setUser(token)
-        history.push('/firstlogingoogle')
+        history.push('/')
       }
     } catch (err) {
       console.log(err);

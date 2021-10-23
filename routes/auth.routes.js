@@ -7,4 +7,6 @@ router.post('/login', authControllers.postLogin)
 
 router.post('/login-google', authControllers.postLoginGoogle)
 
+router.post('/update-login-google', authControllers.postUpdateLoginGoogle)
+
 module.exports = router
