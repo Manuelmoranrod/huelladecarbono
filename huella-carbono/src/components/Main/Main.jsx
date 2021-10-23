@@ -6,6 +6,7 @@ import Error from '../Error/Error';
 import Register from "../Register/Register";
 import Profile from "../Profile/Profile";
 import Compensate from "../Compensate/Compensate";
+import Track from "../Track/Track";
 
 const Main = () => {
   return (
@@ -16,6 +17,7 @@ const Main = () => {
         <Route path="/register" component={Register} />
         <Route path="/profile" component={Profile} />
         <Route path="/compensate" component={Compensate} />
+        <Route path="/track" component={Track} />
         <Route component={Error} />
       </Switch>
     </div>

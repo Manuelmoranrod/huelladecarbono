@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ApexCharts, { ReactApexChart } from 'apexcharts'
 import Chart from "react-apexcharts";
 
 import './Profile.css'
