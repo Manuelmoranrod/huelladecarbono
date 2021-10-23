@@ -13,7 +13,7 @@ app.use(cors())
 const authRoutes = require('./routes/auth.routes')
 
 // database
-require("./utils/mongodb")
+//require("./utils/mongodb")
 
 // morgan
 app.use(morgan('dev'));
@@ -38,7 +38,6 @@ app.get('/', async (req,res) => {
 });
 
 app.use('/auth/', authRoutes)
-
 
 
 const port = process.env.PORT || 3001
