@@ -7,8 +7,10 @@ const app = express()
 // Permisos de Cors
 app.use(cors())
 
-// Importdación routes
+// Importación routes
 const authRoutes = require('./routes/auth.routes')
+const infoRoutes = require('./routes/info.routes')
+const updatesRoutes = require('./routes/updates.routes')
 
 
 
@@ -20,8 +22,14 @@ app.use(morgan('dev'));
 app.use(express.json()); // para convertir a JSON
 app.use(express.urlencoded({ extended: true })) // Recibir formularios
 
-
+// Authentication
 app.use('/auth/', authRoutes)
+
+// user_info
+app.use('/info/', infoRoutes)
+
+// user_updates
+app.use('/updates/', updatesRoutes)
 
 
 const port = process.env.PORT || 3001
