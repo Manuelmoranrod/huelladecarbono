@@ -55,3 +55,15 @@ const LoginGoogle = () => {
 };
 
 export default LoginGoogle;
+
+
+// CREATE TABLE USER_INFO (
+//   INFO_ID int NOT NULL AUTO_INCREMENT,
+//   TRANSPORT int NOT NULL,
+//   FOOD int NOT NULL,
+//   HOME int NOT NULL,
+//   USER_ID int,
+//   DATE date,
+//   PRIMARY KEY (INFO_ID),
+//   FOREIGN KEY (USER_ID) REFERENCES USER(ID)
+// )
