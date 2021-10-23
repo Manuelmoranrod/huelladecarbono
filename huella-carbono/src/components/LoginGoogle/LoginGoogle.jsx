@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import GoogleLogin from 'react-google-login';
 
@@ -7,26 +8,37 @@ import userContext from "../../context/userContext";
 
 const LoginGoogle = () => {
 
+  const history = useHistory()
+
   // Context
   const { setUser } = useContext(userContext)
 
   const handleLoginGoogle = async (resGoogle) => {
-    console.log(resGoogle);
-
-
-    const { email, givenName, familyName, googleId } = resGoogle.profileObj
+    const { email, googleId } = resGoogle.profileObj
 
     const objUser = {
       email,
       password: googleId
     }
 
-    const response = await axios.post('http://localhost:3001/auth/login-google', objUser)
+    try {
+      const response = await axios.post('http://localhost:3001/auth/login-google', objUser)
 
-    const token = response.data.token
+      const token = response.data.token
+      const firstTime = response.data.firstTime
 
-    sessionStorage.setItem('token', token)
-    setUser(token)
+      if (firstTime) {
+        sessionStorage.setItem('token', token)
+        setUser(token)
+        history.push('/firstlogingoogle')
+      } else {
+        sessionStorage.setItem('token', token)
+        setUser(token)
+        history.push('/firstlogingoogle')
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleLoginGoogleError = (resGoogle) => console.log(resGoogle);

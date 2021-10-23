@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 import LoginGoogle from "../LoginGoogle";
+import { useForm } from "react-hook-form";
 
 // Mui
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -10,7 +11,12 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 // Context
 import userContext from "../../context/userContext";
 
+
+
 const Register = () => {
+
+  // Formik
+  const { register, formState: { errors }, handleSubmit, setError } = useForm();
 
   // Context
   const { user, setUser } = useContext(userContext);
@@ -18,13 +24,43 @@ const Register = () => {
   // States
   const [inputPassword, setInputPassword] = useState('password')
 
-  const handleRegister = async (event) => {
-    event.preventDefault()
+  // const handleRegister = async (event) => {
+  //   event.preventDefault()
 
-    const username = event.target.username.value
-    const city = event.target.city.value
-    const email = event.target.email.value
-    const password = event.target.password.value
+  //   const username = event.target.username.value
+  //   const city = event.target.city.value
+  //   const email = event.target.email.value
+  //   const password = event.target.password.value
+
+  //   let response
+  // try {
+  //   response = await axios.post('http://localhost:3001/auth/register', {
+  //     username,
+  //     city,
+  //     email,
+  //     password
+  //   })
+
+  //   if (response.status === 200) {
+
+  //     const token = response.data.token
+
+  //     sessionStorage.setItem('token', token)
+  //     setUser(token)
+  //   }
+
+  // } catch (err) {
+  //   console.log(err.response.status);
+  //   if (err.response.status === 400) {
+  //     cogoToast.error("Este email ya está en uso");
+  //   }
+  // }
+
+  // };
+
+
+  const onSubmit = async (data) => {
+    const { username, city, email, password } = data
 
     try {
       const response = await axios.post('http://localhost:3001/auth/register', {
@@ -34,10 +70,7 @@ const Register = () => {
         password
       })
 
-      console.log(response);
-
       if (response.status === 200) {
-        console.log(response);
 
         const token = response.data.token
 
@@ -46,10 +79,13 @@ const Register = () => {
       }
 
     } catch (err) {
-      alert('usuario ya registrado')
+      console.log(err.response.status);
+      if (err.response.status === 400) {
+        setError('apiError', { message: 'El email que intentas registrar ya esta en uso' })
+      }
     }
 
-  };
+  }
 
 
   return (
@@ -58,15 +94,17 @@ const Register = () => {
         user
           ? <Redirect to="/" />
           : <div className="register">
-            <form className="form-register" onSubmit={handleRegister}>
+            <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
               <h1>Crea tu cuenta</h1>
 
-              <label>Alias</label>
-              <input type="text" name="username" />
+              <label htmlFor="username">Alias</label>
+              <input {...register("username", { required: true, minLength: 6 })} />
+              <p className="form-error">{errors.username?.type === 'required' && "El Alias es obligatorio"}</p>
+              <p className="form-error">{errors.username?.type === 'minLength' && "Alias debe tener al menos 6 caracteres"}</p>
 
-              <label >Ciudad en la que vives</label>
-              <select name="city" size="1">
-                <option value='selecciona'>Selecciona</option>
+              <label>Ciudad en la que vives</label>
+              <select {...register("city", { required: true })}>
+                <option value=''>Selecciona</option>
                 <option value='A Coruña' >A Coruña</option>
                 <option value='álava'>álava</option>
                 <option value='Albacete' >Albacete</option>
@@ -121,28 +159,39 @@ const Register = () => {
                 <option value='Zamora' >Zamora</option>
                 <option value='Zaragoza'>Zaragoza</option>
               </select>
+              <p className="form-error">{errors.city?.type === 'required' && "Debes seleccionar una ciudad"}</p>
 
-              <label>Email</label>
-              <input type="text" name="email" />
-              <label for="password">Contraseña</label>
+
+              <label htmlFor="email">Email</label>
+              <input {...register("email", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} />
+              <p className="form-error">{errors.email?.type === 'required' && "El campo email es obligatorio"}</p>
+              <p className="form-error">{errors.email?.type === 'pattern' && "Debes intrucir un formato de email valido"}</p>
+              <p className="form-error">{errors.apiError && errors.apiError.message}</p>
+
+              <label htmlFor="password">Contraseña</label>
               <div className="input-password">
-                <input type={inputPassword} id="password" name="password" />
+                <input type={inputPassword} {...register("password", { required: true, pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/ })} />
                 {inputPassword === 'password'
                   ? <VisibilityIcon className="eye-icon" onClick={() => setInputPassword('text')} />
                   : <VisibilityOffIcon className="eye-icon" onClick={() => setInputPassword('password')} />
                 }
               </div>
-              <div className="div-input-checkbox" id="privacidad">
-                <input name="privacidad" id="privacidad" className="input-checkbox" type="checkbox" />
-                <label for="privacidad">Acepto las condiciones de privacidad</label>
+              <p className="form-error">{errors.password?.type === 'required' && "El campo contraseña es obligatorio"}</p>
+              <p className="form-error">{errors.password?.type === 'pattern' && "La contraseña debe tener una letra mayúscula y minúscula, un carácter especial, un numero y 8 caracteres como mínimo"}</p>
+
+              <div className="div-input-checkbox">
+                <input className="input-checkbox" type="checkbox" id="privacidad" {...register("privacidad", { required: true })} />
+                <label htmlFor="privacidad">Acepto las condiciones de privacidad</label>
               </div>
+              <p className="form-error">{errors.privacidad?.type === 'required' && "Debe aceptar las condiciones de privacidad para continuar"}</p>
+
               <input className="button-enviar" type="submit" />
 
               <div className="box-google-login">
                 <LoginGoogle />
               </div>
 
-              <Link>¿Aún no tienes cuenta? <b>Crea la tuya</b></Link>
+              <Link to="/login">¿Aún no tienes cuenta? <b>Crea la tuya</b></Link>
             </form>
 
           </div>
