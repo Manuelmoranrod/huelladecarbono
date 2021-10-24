@@ -86,3 +86,19 @@
         border-radius: 10px;
     }
 }
+
+
+.papa{
+    width: 100%;
+    background: #eee;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .hijo{
+        // width: 30px;
+        height: 100%;
+        background: rgb(33,45,69);
+        background: linear-gradient(90deg, rgba(33,45,69,1) 0%, rgba(70,128,245,1) 100%);
+    }
+}

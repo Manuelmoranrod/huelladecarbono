@@ -4,15 +4,15 @@ import axios from "axios";
 // Context
 import userContext from "../../context/userContext";
 
-const Transport = () => {
+const House = () => {
 
   // Context
   const { user } = useContext(userContext);
 
   const questions = [
     {
-      questionText: 'Pregunta de transporte 1',
-      type: 'transport',
+      questionText: 'Pregunta de hogar 1',
+      type: 'home',
       answerOptions: [
         { answerText: '1', isCorrect: 6 },
         { answerText: '2', isCorrect: 5 },
@@ -21,8 +21,8 @@ const Transport = () => {
       ],
     },
     {
-      questionText: 'Pregunta de transporte 2',
-      type: 'transport',
+      questionText: 'Pregunta de hogar 2',
+      type: 'home',
       answerOptions: [
         { answerText: 'Jeff Bezos', isCorrect: 2 },
         { answerText: 'Elon Musk', isCorrect: 6 },
@@ -31,8 +31,8 @@ const Transport = () => {
       ],
     },
     {
-      questionText: 'Pregunta de transporte 3',
-      type: 'transport',
+      questionText: 'Pregunta de hogar 3',
+      type: 'home',
       answerOptions: [
         { answerText: 'Apple', isCorrect: 15 },
         { answerText: 'Intel', isCorrect: 18 },
@@ -45,14 +45,14 @@ const Transport = () => {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showValue, setShowValue] = useState(false);
-  const [transport, setTransport] = useState(0);
+  const [home, setHome] = useState(0);
 
   // Effect
   useEffect(() => {
     if (showValue) {
       axios.post('http://localhost:3001/updates/post-update', {
-        value: transport,
-        type: 'transport',
+        value: home,
+        type: 'home',
         token: user
       })
     }
@@ -61,8 +61,8 @@ const Transport = () => {
 
   const handleAnswerOptionClick = (value, type) => {
 
-    if (type === 'transport') {
-      setTransport(transport + value);
+    if (type === 'home') {
+      setHome(home + value);
     }
 
     const nextQuestion = currentQuestion + 1;
@@ -78,7 +78,7 @@ const Transport = () => {
     <div>
       {showValue
         ? <div className='score-section'>
-          Your CO2 kg is {transport}
+          Your CO2 kg is {home}
         </div>
         : (
           <>
@@ -102,4 +102,4 @@ const Transport = () => {
   );
 };
 
-export default Transport;
+export default House;

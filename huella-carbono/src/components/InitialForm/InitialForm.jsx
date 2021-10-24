@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 // Context
@@ -7,11 +8,10 @@ import userContext from "../../context/userContext";
 const InitialForm = () => {
 
 	// Context
-	const { user, setUser } = useContext(userContext);
+	const { user } = useContext(userContext);
 
 	const questions = [
 		{
-			// Transport
 			questionText: 'Cuantos vuelos coges al año?',
 			type: 'home',
 			answerOptions: [
@@ -30,7 +30,6 @@ const InitialForm = () => {
 				{ answerText: 'Bill Gates', isCorrect: 9 },
 				{ answerText: 'Tony Stark', isCorrect: 10 },
 			],
-			// Transport
 		},
 		{
 			questionText: 'The iPhone was created by which company?',
@@ -98,6 +97,7 @@ const InitialForm = () => {
 			{showValue
 				? <div className='score-section'>
 					Your CO2 kg is {home + food + transport}
+					<Link to="/profile">Finalizar</Link>
 				</div>
 				: (
 					<>

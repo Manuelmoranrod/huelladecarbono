@@ -62,12 +62,31 @@ const user_info = {
         })
     },
 
+    clearUserInfo: async () => {
+        return new Promise(function (resolve, reject) {
+            try {
+                // conexionSQL.connect()
+                const date = new Date()
+                conexionSQL.query('DELETE FROM USER_INFO', function (err, results, fields) {
+                    if (err) return reject(err);
+                    console.log(results);
+                    return resolve(results)
+                })
+            } catch (err) {
+                console.log(err);
+            } finally {
+                // conexionSQL.end()
+            }
+        })
+    },
+
 }
 
 
 // user_info.setDataInUserInfo()
 // user_info.getUserInfoLastDate()
 // user_info.getAllInfoUser()
+// user_info.clearUserInfo()
 
 
 module.exports = user_info

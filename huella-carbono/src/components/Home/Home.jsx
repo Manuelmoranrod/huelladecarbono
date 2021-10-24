@@ -1,10 +1,13 @@
 import React from "react";
-import InitialForm from "../InitialForm/InitialForm";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <main className="home">
-      <InitialForm />
+      <h1>Bienvenido a la app</h1>
+
+      <Link to="/login">Iniciar sesión</Link>
+      <Link to="/register">Registrarse</Link>
 
     </main>
   );
