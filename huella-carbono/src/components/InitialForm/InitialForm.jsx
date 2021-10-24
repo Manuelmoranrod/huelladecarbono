@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const InitialForm = () => {
-  const questions = [
+    const questions = [
 		{
 			questionText: 'Cuantos vuelos coges al año?',
 			answerOptions: [
@@ -40,11 +40,11 @@ const InitialForm = () => {
 		},
 	];
 
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
 
-  const handleAnswerOptionClick = (isCorrect) => {
+    const handleAnswerOptionClick = (isCorrect) => {
 		if (isCorrect) {
 			setScore(score + 1);
 		}
@@ -57,7 +57,7 @@ const InitialForm = () => {
 		}
 	};
 
-  return (
+    return (
     <div className='initial-form'>
 			{showScore ? (
 				<div className='score-section'>
@@ -82,7 +82,7 @@ const InitialForm = () => {
 				</>
 			)}
 		</div>
-  );
+    );
 };
 
 export default InitialForm;

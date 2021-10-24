@@ -10,19 +10,14 @@ app.use(cors())
 // Importdación routes
 const authRoutes = require('./routes/auth.routes')
 
-
-
 // morgan
 app.use(morgan('dev'));
-
 
 // Para que el serivor pueda leer archivos json y recibir formularios
 app.use(express.json()); // para convertir a JSON
 app.use(express.urlencoded({ extended: true })) // Recibir formularios
 
-
 app.use('/auth/', authRoutes)
-
 
 const port = process.env.PORT || 3001
 

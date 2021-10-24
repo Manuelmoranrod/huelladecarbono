@@ -1,4 +1,3 @@
-// const users = require('../models/users_psb')
 const users = require('../models/users_mysql')
 const CryptoJS = require("crypto-js");
 const jwt = require('jsonwebtoken')
@@ -116,6 +115,8 @@ const authControllers = {
             res.status(200)
         }
     },
+
+    
 }
 
 module.exports = authControllers

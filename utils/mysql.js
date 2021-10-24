@@ -7,8 +7,6 @@ var conexionSQL = mysql.createConnection({
     password : process.env.MYSQL_PASS,
 });
 
-
-
 module.exports = conexionSQL
 
 
