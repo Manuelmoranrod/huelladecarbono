@@ -8,7 +8,16 @@ const infoControllers = {
     postInfo: async (req, res) => {
         console.log('Este es para crear entradas en la tabla user info');
 
-        const newInfo = await user_info.setDataInUserInfo(transport, food, home, userId)
+        const {transport, food, home, token} = req.body
+        console.log(req.body);
+
+        const user = jwt.verify(token, process.env.JWT)
+
+        console.log(user);
+
+        const newInfo = await user_info.setDataInUserInfo(transport, food, home, user.id)
+
+        // console.log(newInfo);
     },
 
     getInfoLastDate: async (req, res) => {
