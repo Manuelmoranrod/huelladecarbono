@@ -5,8 +5,6 @@ const user_updates = {
     setDataInUserUpdate: async (type, value, idUser) => {
         return new Promise(function (resolve, reject) {
             try {
-                // conexionSQL.connect()
-                // const date = new Date('2021-10-23T03:24:00')
                 const date = new Date()
                 // console.log(date);
                 conexionSQL.query('INSERT INTO USER_UPDATES (TYPE, VALUE, USER_ID, DATE) VALUES (?,?,?,?)', [type, value, idUser, date], function (err, results, fields) {
@@ -16,8 +14,6 @@ const user_updates = {
                 })
             } catch (err) {
                 console.log(err);
-            } finally {
-                // conexionSQL.end()
             }
         })
     },
@@ -25,8 +21,6 @@ const user_updates = {
     getDataInUserUpdateLastMonthFromType: async (userId, type) => {
         return new Promise(function (resolve, reject) {
             try {
-                // conexionSQL.connect()
-                // const date = new Date('2021-10-09T03:24:00')
                 const date = new Date()
                 // console.log(date);
                 conexionSQL.query(`
@@ -40,8 +34,6 @@ const user_updates = {
                 })
             } catch (err) {
                 console.log(err);
-            } finally {
-                // conexionSQL.end()
             }
         })
     },
@@ -49,8 +41,6 @@ const user_updates = {
     createUserUpdate: async (transport, food, home, userId) => {
         return new Promise(function (resolve, reject) {
             try {
-                // conexionSQL.connect()
-                // const date = new Date('2021-10-27T03:24:00')
                 const date = new Date()
                 // console.log(date);
                 conexionSQL.query(`
@@ -70,8 +60,6 @@ const user_updates = {
                 })
             } catch (err) {
                 console.log(err);
-            } finally {
-                // conexionSQL.end()
             }
         })
     },
