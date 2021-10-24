@@ -12,15 +12,13 @@ const authRoutes = require('./routes/auth.routes')
 const infoRoutes = require('./routes/info.routes')
 const updatesRoutes = require('./routes/updates.routes')
 
-
-
 // morgan
 app.use(morgan('dev'));
-
 
 // Para que el serivor pueda leer archivos json y recibir formularios
 app.use(express.json()); // para convertir a JSON
 app.use(express.urlencoded({ extended: true })) // Recibir formularios
+
 
 // Authentication
 app.use('/auth/', authRoutes)

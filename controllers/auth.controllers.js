@@ -1,4 +1,3 @@
-// const users = require('../models/users_psb')
 const users = require('../models/users_mysql')
 const CryptoJS = require("crypto-js");
 const jwt = require('jsonwebtoken')
@@ -117,6 +116,7 @@ const authControllers = {
         }
     },
 
+
     postUpdateLoginGoogle: async (req, res) => {
         const { username, city, token } = req.body
 
@@ -131,6 +131,7 @@ const authControllers = {
             res.status(400).send({message: `Error: ${err}`})
         }
     },
+
 }
 
 module.exports = authControllers
