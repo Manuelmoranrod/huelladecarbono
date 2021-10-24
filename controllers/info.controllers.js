@@ -16,7 +16,7 @@ const infoControllers = {
             res.status(200).send({message: 'Ok'})
         } catch(err){
             res.status(400).send({message: err})
-        }
+        } 
     },
 
     getInfoLastDate: async (req, res) => {
