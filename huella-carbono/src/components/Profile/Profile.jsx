@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import Chart from "react-apexcharts";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 // Context
 import userContext from "../../context/userContext";
@@ -97,7 +97,7 @@ const Profile = () => {
                   <p>170kg CO2</p>
                   <span>Persona media en España</span>
                 </div>
-                <button>Track diario</button>
+                <Link to="/track"><button>Track diario</button></Link>
               </div>
 
               <div className="div-chart-percentage">
@@ -119,7 +119,9 @@ const Profile = () => {
 
               <h2>Tu progreso</h2>
 
-              <p>ESTO ES UNA BARRA</p>
+              <div className="papa">
+                <div className="hijo" style={{width: `${30}%`}}></div>
+              </div>
 
               <button className="button-compensar">Compensar mi huella</button>
 

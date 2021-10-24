@@ -27,7 +27,7 @@ const FirstLoginGoogle = () => {
     })
 
     if(response.status === 200){
-      history.push('/')
+      history.push('/initial-form')
     }else{
       alert("error")
     }

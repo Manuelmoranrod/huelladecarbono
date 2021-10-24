@@ -6,9 +6,12 @@ const jwt = require('jsonwebtoken')
 const updatesControllers = {
 
     postUpdate: async (req, res) => {
-        console.log('Este es para crear entradas en la tabla user updates');
+        const {token, value, type} = req.body
+        console.log(req.body);
 
-        const newInfo = await user_updates.setDataInUserUpdate(type, value, idUser)
+        const user = jwt.verify(token, process.env.JWT)
+
+        const newInfo = await user_updates.setDataInUserUpdate(type, value, user.id)
     },
 
     getUpdateFromType: async (req, res) => {

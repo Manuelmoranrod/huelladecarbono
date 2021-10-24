@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import LoginGoogle from "../LoginGoogle";
 import { useForm } from "react-hook-form";
+import InitialForm from "../InitialForm"
 
 // Mui
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -14,6 +15,8 @@ import userContext from "../../context/userContext";
 
 
 const Register = () => {
+
+  const history = useHistory()
 
   // Formik
   const { register, formState: { errors }, handleSubmit, setError } = useForm();
@@ -42,6 +45,11 @@ const Register = () => {
 
         sessionStorage.setItem('token', token)
         setUser(token)
+
+        console.log('registro con exito');
+
+        history.push('/initial-form')
+        
       }
 
     } catch (err) {

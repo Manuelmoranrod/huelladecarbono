@@ -8,6 +8,10 @@ import Profile from "../Profile/Profile";
 import Compensate from "../Compensate/Compensate";
 import Track from "../Track/Track";
 import FirstLoginGoogle from "../FirstLoginGoogle";
+import InitialForm from "../InitialForm";
+import Transport from "../Transport";
+import Food from "../Food";
+import House from "../House";
 
 
 const Main = () => {
@@ -17,6 +21,10 @@ const Main = () => {
         <Route path="/" component={Home} exact />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/initial-form" component={InitialForm} />
+        <Route path="/form-transport" component={Transport} />
+        <Route path="/form-food" component={Food} />
+        <Route path="/form-home" component={House} />
         <Route path="/profile" component={Profile} />
         <Route path="/compensate" component={Compensate} />
         <Route path="/track" component={Track} />
