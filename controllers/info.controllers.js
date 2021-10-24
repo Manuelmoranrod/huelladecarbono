@@ -6,18 +6,17 @@ const jwt = require('jsonwebtoken')
 const infoControllers = {
 
     postInfo: async (req, res) => {
-        console.log('Este es para crear entradas en la tabla user info');
-
         const {transport, food, home, token} = req.body
-        console.log(req.body);
 
-        const user = jwt.verify(token, process.env.JWT)
+        try{
+            const user = jwt.verify(token, process.env.JWT)
+            
+            const newInfo = await user_info.setDataInUserInfo(transport, food, home, user.id)
 
-        console.log(user);
-
-        const newInfo = await user_info.setDataInUserInfo(transport, food, home, user.id)
-
-        // console.log(newInfo);
+            res.status(200).send({message: 'Ok'})
+        } catch(err){
+            res.status(400).send({message: err})
+        }
     },
 
     getInfoLastDate: async (req, res) => {
@@ -42,7 +41,6 @@ const infoControllers = {
             transport: TRANSPORT,
             home: HOME
         })
-        console.log(RowDataPacket);
     },
 }
 

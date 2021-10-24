@@ -64,23 +64,12 @@ const InitialForm = () => {
 	// Effect
 	useEffect(() => {
 		if (showValue) {
-
-			console.log('UA AH TERMINADO');
-			console.log({
-				transport,
-				food,
-				home
-			});
-
-			console.log('ey');
-
 			axios.post('http://localhost:3001/info/post-info', {
 				transport,
 				food,
 				home,
 				token: user
 			})
-
 		}
 	}, [showValue])
 
@@ -108,11 +97,6 @@ const InitialForm = () => {
 		<div className='initial-form'>
 			{showValue
 				? <div className='score-section'>
-					{console.log({
-						transport,
-						food,
-						home
-					})}
 					Your CO2 kg is {home + food + transport}
 				</div>
 				: (
