@@ -116,7 +116,22 @@ const authControllers = {
         }
     },
 
-    
+
+    postUpdateLoginGoogle: async (req, res) => {
+        const { username, city, token } = req.body
+
+        const user = jwt.verify(token, process.env.JWT)
+
+        try{
+            const updateUser = await users.updateUserGoogle(user.id, username, city)
+            
+            res.status(200).send({message: 'OK'})
+        } catch(err){
+            console.log(err);
+            res.status(400).send({message: `Error: ${err}`})
+        }
+    },
+
 }
 
 module.exports = authControllers

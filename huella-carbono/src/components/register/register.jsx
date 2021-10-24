@@ -24,40 +24,6 @@ const Register = () => {
   // States
   const [inputPassword, setInputPassword] = useState('password')
 
-  // const handleRegister = async (event) => {
-  //   event.preventDefault()
-
-  //   const username = event.target.username.value
-  //   const city = event.target.city.value
-  //   const email = event.target.email.value
-  //   const password = event.target.password.value
-
-  //   let response
-  // try {
-  //   response = await axios.post('http://localhost:3001/auth/register', {
-  //     username,
-  //     city,
-  //     email,
-  //     password
-  //   })
-
-  //   if (response.status === 200) {
-
-  //     const token = response.data.token
-
-  //     sessionStorage.setItem('token', token)
-  //     setUser(token)
-  //   }
-
-  // } catch (err) {
-  //   console.log(err.response.status);
-  //   if (err.response.status === 400) {
-  //     cogoToast.error("Este email ya está en uso");
-  //   }
-  // }
-
-  // };
-
 
   const onSubmit = async (data) => {
     const { username, city, email, password } = data

@@ -26,7 +26,7 @@ const LoginGoogle = () => {
 
       const token = response.data.token
       const firstTime = response.data.firstTime
-
+      console.log('firstime', firstTime);
       if (firstTime) {
         sessionStorage.setItem('token', token)
         setUser(token)
@@ -34,7 +34,7 @@ const LoginGoogle = () => {
       } else {
         sessionStorage.setItem('token', token)
         setUser(token)
-        history.push('/firstlogingoogle')
+        history.push('/')
       }
     } catch (err) {
       console.log(err);
@@ -55,3 +55,15 @@ const LoginGoogle = () => {
 };
 
 export default LoginGoogle;
+
+
+// CREATE TABLE USER_INFO (
+//   INFO_ID int NOT NULL AUTO_INCREMENT,
+//   TRANSPORT int NOT NULL,
+//   FOOD int NOT NULL,
+//   HOME int NOT NULL,
+//   USER_ID int,
+//   DATE date,
+//   PRIMARY KEY (INFO_ID),
+//   FOREIGN KEY (USER_ID) REFERENCES USER(ID)
+// )
