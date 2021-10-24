@@ -2,6 +2,9 @@
     height: 50px;
     width: 100%;
     background-color: grey;
+    position: fixed;
+    bottom: 0;
+    
     & > ul{
         display: flex;
         flex-direction: row;
