@@ -6,9 +6,13 @@ const jwt = require('jsonwebtoken')
 const infoControllers = {
 
     postInfo: async (req, res) => {
-        console.log('Este es para crear entradas en la tabla user info');
+        console.log('Este es para crear entradas en la tabla USER_INFO');
+        console.log(req.body);
+
+        const user = jwt.verify(req.body.token, process.env.JWT)
 
         const newInfo = await user_info.setDataInUserInfo(transport, food, home, userId)
+        console.log("posteado formulario", newInfo);
     },
 
     getInfoLastDate: async (req, res) => {
