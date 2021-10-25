@@ -1,4 +1,6 @@
 import React from "react";
+import { Redirect, Link } from "react-router-dom";
+
 
 const Compensate = () => {
   return (
@@ -13,16 +15,7 @@ const Compensate = () => {
         </div>
         <h2>Premium</h2>
         <p>Breve comentario</p>
-        <button className="slct">Seleccionar</button>
-      </div>
-
-      <div className="plan-card">
-        <div className="img">
-          Imagen
-        </div>
-        <h2>High</h2>
-        <p>Breve comentario</p>
-        <button className="slct">Seleccionar</button>
+        <Link to="/premiumsub"><button className="slct">Seleccionar</button></Link>
       </div>
 
       <div className="plan-card">
@@ -31,7 +24,7 @@ const Compensate = () => {
         </div>
         <h2>Mid</h2>
         <p>Breve comentario</p>
-        <button className="slct">Seleccionar</button>
+        <Link to="/midsub"><button className="slct">Seleccionar</button></Link>
       </div>
 
       <div className="plan-card">
@@ -40,7 +33,8 @@ const Compensate = () => {
         </div>
         <h2>Low</h2>
         <p>Breve comentario</p>
-        <button className="slct">Seleccionar</button>
+        <Link to="/lowsub"><button className="slct">Seleccionar</button></Link>
+
       </div>
     </div>
   );

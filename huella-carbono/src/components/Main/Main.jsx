@@ -13,6 +13,9 @@ import Transport from "../Transport";
 import Food from "../Food";
 import House from "../House";
 import Ranking from "../Ranking";
+import Premiumsub from "../Premiumsub";
+import Midsub from "../Midsub";
+import Lowsub from "../Lowsub";
 
 
 const Main = () => {
@@ -30,6 +33,9 @@ const Main = () => {
         <Route path="/ranking" component={Ranking} />
         <Route path="/compensate" component={Compensate} />
         <Route path="/track" component={Track} />
+        <Route path="/premiumsub" component={Premiumsub} />
+        <Route path="/midsub" component={Midsub} />
+        <Route path="/lowsub" component={Lowsub} />
         <Route path="/firstlogingoogle" component={FirstLoginGoogle} />
         <Route component={Error} />
       </Switch>
