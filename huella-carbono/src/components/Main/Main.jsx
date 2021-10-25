@@ -12,6 +12,7 @@ import InitialForm from "../InitialForm";
 import Transport from "../Transport";
 import Food from "../Food";
 import House from "../House";
+import Ranking from "../Ranking";
 import Premiumsub from "../Premiumsub";
 import Midsub from "../Midsub";
 import Lowsub from "../Lowsub";
@@ -29,6 +30,7 @@ const Main = () => {
         <Route path="/form-food" component={Food} />
         <Route path="/form-home" component={House} />
         <Route path="/profile" component={Profile} />
+        <Route path="/ranking" component={Ranking} />
         <Route path="/compensate" component={Compensate} />
         <Route path="/track" component={Track} />
         <Route path="/premiumsub" component={Premiumsub} />
