@@ -12,12 +12,13 @@
 
 .App {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    justify-content: center;
     // align-items: center;
     flex-direction: column;
     
     width: 100%;
-    min-height: 100vh;
+    // min-height: 100vh;
     // background-color: rgb(36, 34, 34);
 
 }
