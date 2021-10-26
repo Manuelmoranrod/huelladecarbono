@@ -64,11 +64,60 @@ const user_updates = {
         })
     },
 
+    getDataFromTransport: async () => {
+        return new Promise(function (resolve, reject) {
+            try {
+                const date = new Date()
+                // console.log(date);
+                conexionSQL.query('SELECT * FROM TRANSPORT', function (err, results, fields) {
+                    if (err) return reject(err);
+                    // console.log(results);
+                    return resolve(results)
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        })
+    },
+
+    getDataFromFood: async () => {
+        return new Promise(function (resolve, reject) {
+            try {
+                const date = new Date()
+                // console.log(date);
+                conexionSQL.query('SELECT * FROM FOOD', function (err, results, fields) {
+                    if (err) return reject(err);
+                    // console.log(results);
+                    return resolve(results)
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        })
+    },
+
+    getDataFromHome: async () => {
+        return new Promise(function (resolve, reject) {
+            try {
+                const date = new Date()
+                // console.log(date);
+                conexionSQL.query('SELECT * FROM HOME', function (err, results, fields) {
+                    if (err) return reject(err);
+                    // console.log(results);
+                    return resolve(results)
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        })
+    },
+
 }
 
 // user_updates.createUserUpdate()
 // user_updates.setDataInUserUpdate()
 // user_updates.getDataInUserUpdateLastMonthFromType()
+// user_updates.getDataFromTransport()
 
 
 module.exports = user_updates

@@ -31,11 +31,19 @@ const Transport = () => {
   //Context
   const { user } = useContext(userContext);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (user === null) {
       history.push('/')
     }
+
+    const { data } = await axios.get('http://localhost:3001/updates/get-update-transport')
+
+    console.log(data);
+    setDataTransport(data)
   }, [])
+
+  // State data back
+  const [dataTransport, setDataTransport] = useState({})
 
   // Transport
   const [radioTransportVehicle, setRadioTransportVehicle] = useState(0)
@@ -96,13 +104,57 @@ const Transport = () => {
 
   const handleSubmitAllForm = () => {
 
+    let finalNum = 0;
 
-    // axios.post('http://localhost:3001/info/post-info', {
-    // 	transport,
-    // 	food,
-    // 	home,
-    // 	token: user
-    // })
+    if (defaultData["transport-vehicle"] === 'coche' || defaultData["transport-vehicle"] === 'avion') {
+
+      if (defaultData["transport-vehicle"] === 'coche') {
+        finalNum = Number(defaultData["transport-fuel"]) * Number(defaultData["transport-km"])
+      }
+
+      if (defaultData["transport-vehicle"] === 'avion') {
+
+        if (defaultData["transport-flys-time"] === 'sort') {
+          finalNum = Number(dataTransport.flySortBusiness)
+        }
+
+        if (defaultData["transport-flys-time"] === 'mid') {
+
+          if (defaultData["transport-flys-class"] === 'economy') {
+            finalNum = Number(dataTransport.flyMidEconomy)
+          } else if (defaultData["transport-flys-class"] === 'business') {
+            finalNum = Number(dataTransport.flyMidBusiness)
+
+          } else if (defaultData["transport-flys-class"] === 'first-class') {
+            finalNum = Number(dataTransport.flyMidFirstClass)
+          }
+
+        }
+
+        if (defaultData["transport-flys-time"] === 'long') {
+
+          if (defaultData["transport-flys-class"] === 'economy') {
+            finalNum = Number(dataTransport.flyLongEconomy)
+          } else if (defaultData["transport-flys-class"] === 'business') {
+            finalNum = Number(dataTransport.flyLongBusiness)
+
+          } else if (defaultData["transport-flys-class"] === 'first-class') {
+            finalNum = Number(dataTransport.flyLongFirstClass)
+          }
+
+        }
+
+      }
+
+    } else {
+      finalNum = Number(defaultData["transport-vehicle"]) * Number(defaultData["transport-km"])
+    }
+
+    axios.post('http://localhost:3001/updates/post-update', {
+    	type: 'transport',
+    	value: finalNum,
+    	token: user
+    })
   }
 
 
@@ -122,13 +174,13 @@ const Transport = () => {
           <input value="coche" id="coche" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
           <label htmlFor="coche">Coche</label>
 
-          <input value="546" id="bus" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+          <input value={dataTransport.averageBus} id="bus" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
           <label htmlFor="bus">Bus</label>
 
-          <input value="546" id="tren-metro" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+          <input value={dataTransport.averageMetro} id="tren-metro" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
           <label htmlFor="tren-metro">Tren / Metro</label>
 
-          <input value="546" id="moto" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+          <input value={dataTransport.averageMoto} id="moto" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
           <label htmlFor="moto">Moto</label>
 
           <input value="0" id="bici" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
@@ -137,7 +189,7 @@ const Transport = () => {
           <input value="0" id="pie" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
           <label htmlFor="pie">A pie</label>
 
-          <input value="0" id="avion" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+          <input value="avion" id="avion" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
           <label htmlFor="avion">En avión</label>
         </form>
       );
@@ -146,19 +198,19 @@ const Transport = () => {
         <form>
           <h2>Transporte</h2>
           <h3>¿En qué tipo de coche te has movido hoy?</h3>
-          <input value="1" id="diesel" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
+          <input value={dataTransport.averageDiesel} id="diesel" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
           <label htmlFor="diesel">Diesel</label>
 
-          <input value="2" id="gasolina" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
+          <input value={dataTransport.averagePetrol} id="gasolina" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
           <label htmlFor="gasolina">Gasolina</label>
 
-          <input value="3" id="hibrido" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
+          <input value={dataTransport.averageHybrid} id="hibrido" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
           <label htmlFor="hibrido">Híbrido</label>
 
-          <input value="4" id="electrico" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
+          <input value={dataTransport.averageElectric} id="electrico" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
           <label htmlFor="electrico">Eléctrico</label>
 
-          <input value="5" id="gas" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
+          <input value={dataTransport.averageGas} id="gas" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
           <label htmlFor="gas">Gas</label>
         </form>
       );
@@ -176,14 +228,14 @@ const Transport = () => {
         <form>
           <h2>Transporte</h2>
           <h3>¿Qué duración tuvieron?</h3>
-          <input value="2" id="2" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
-          <label htmlFor="2"> -2h </label>
+          <input value="sort" id="2-h" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
+          <label htmlFor="2-h"> {'<2h'} </label>
 
-          <input value="3" id="2-4" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
-          <label htmlFor="2-4">Entre 2 y 4h</label>
+          <input value="mid" id="2-4-h" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
+          <label htmlFor="2-4-h">Entre 2 y 4h</label>
 
-          <input value="4" id="electrico" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
-          <label htmlFor="electrico">+4h</label>
+          <input value="long" id="mas-cuatro-h" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
+          <label htmlFor="mas-cuatro-h">+4h</label>
         </form>
       );
     case "transport-flys-class":
@@ -191,13 +243,13 @@ const Transport = () => {
         <form>
           <h2>Transporte</h2>
           <h3>¿En qué tipo de clase has viajado?</h3>
-          <input value="2" id="2" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
+          <input value="economy" id="2" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
           <label htmlFor="2">Económia</label>
 
-          <input value="3" id="business" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
+          <input value="business" id="business" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
           <label htmlFor="business">Business</label>
 
-          <input value="4" id="first-class" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
+          <input value="first-class" id="first-class" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
           <label htmlFor="first-class">First class</label>
         </form>
       );
@@ -206,7 +258,7 @@ const Transport = () => {
         <div>
           <img />
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa laudantium unde quibusdam iure odio, repellat eos enim quidem soluta aliquid? Quis beatae voluptates provident culpa tempore necessitatibus laboriosam eum eaque.</p>
-          <button>Aceptar</button>
+          <button type="button" onClick={handleSubmitAllForm}>Aceptar</button>
           <button>Colaborar con más proyectos</button>
         </div>
       );
