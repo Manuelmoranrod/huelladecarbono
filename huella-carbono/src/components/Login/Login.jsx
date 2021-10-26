@@ -54,17 +54,17 @@ const Login = () => {
           ? <Redirect to="/" />
           : <div className="login">
             <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
-              <h1>Accede</h1>
+              <h1>Accede a tu perfil</h1>
 
               <label htmlFor="email">Email</label>
-              <input {...register("email", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} />
+              <input placeholder="alicia@gmail.com" {...register("email", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} />
               <p className="form-error">{errors.email?.type === 'required' && "El campo email es obligatorio"}</p>
               <p className="form-error">{errors.email?.type === 'pattern' && "Debes intrucir un formato de email valido"}</p>
               <p className="form-error">{errors.apiError && errors.apiError.message}</p>
 
               <label htmlFor="password">Contraseña</label>
               <div className="input-password">
-                <input type={inputPassword} {...register("password", { required: true, pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/ })} />
+                <input placeholder="*********" type={inputPassword} {...register("password", { required: true, pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/ })} />
                 {inputPassword === 'password'
                   ? <VisibilityIcon className="eye-icon" onClick={() => setInputPassword('text')} />
                   : <VisibilityOffIcon className="eye-icon" onClick={() => setInputPassword('password')} />
