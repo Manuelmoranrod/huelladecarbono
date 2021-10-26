@@ -1,3 +1,195 @@
+import React, { useState, useContext, useEffect } from "react";
+import axios from 'axios';
+import { useHistory } from "react-router";
+import { useStep } from "react-hooks-helper";
+
+// Context
+import userContext from "../../context/userContext";
+
+
+const defaultData = {
+  "home-house": "",
+  "home-metres": "",
+  "home-people": "",
+  "home-heat": "",
+};
+
+const steps = [
+  { id: "home-house" },
+  { id: "home-metres" },
+  { id: "home-people" },
+  { id: "home-heat" },
+  { id: "end-form" },
+];
+
+const InitialForm = () => {
+
+  const history = useHistory()
+
+  //Context
+  const { user } = useContext(userContext);
+
+  // useEffect(() => {
+  // 	if (user === null) {
+  // 		history.push('/')
+  // 	}
+  // }, [])
+
+
+  // Home
+  const [radioHomeHouse, setRadioHomeHouse] = useState(0)
+  const [radioHomeMetres, setRadioHomeMetres] = useState(0)
+  const [radioHomePeople, setRadioHomePeople] = useState(0)
+  const [radioHomeHeat, setRadioHomeHeat] = useState(0)
+
+
+  // ------------------ Home ------------------ 
+
+  const handleChangeHomeHouse = ({ target }) => {
+
+    defaultData["home-house"] = target.value
+    setRadioHomeHouse(target.value)
+    navigation.next()
+  }
+
+  const handleChangeHomeMetres = ({ target }) => {
+
+    defaultData["home-metres"] = target.value
+    setRadioHomeMetres(target.value)
+    navigation.next()
+  }
+
+  const handleChangeHomePeople = ({ target }) => {
+
+    defaultData["home-people"] = target.value
+    setRadioHomePeople(target.value)
+    navigation.next()
+  }
+
+  const handleChangeHomeHeat = ({ target }) => {
+
+    defaultData["home-heat"] = target.value
+    setRadioHomeHeat(target.value)
+    navigation.next()
+  }
+
+  // ------------------ Home ------------------ 
+
+
+  const handleSubmitAllForm = () => {
+
+
+    // axios.post('http://localhost:3001/info/post-info', {
+    // 	transport,
+    // 	food,
+    // 	home,
+    // 	token: user
+    // })
+  }
+
+
+
+  const { step, navigation } = useStep({
+    steps,
+    initialStep: 0,
+  });
+
+  console.log(defaultData);
+
+  switch (step.id) {
+    case "home-house":
+      return (
+        <form>
+          <h2>Hogar</h2>
+          <h3>¿En qué tipo de casa vives?</h3>
+          <input value="2" id="ninguna-dairy" onChange={handleChangeHomeHouse} type="radio" name="home-house" checked={false} />
+          <label htmlFor="ninguna-dairy">Piso</label>
+
+          <input value="3" id="uno-dos-dairy" onChange={handleChangeHomeHouse} type="radio" name="home-house" checked={false} />
+          <label htmlFor="uno-dos-dairy">Vivienda unifamiliar</label>
+
+          <input value="4" id="mas-tres-dairy" onChange={handleChangeHomeHouse} type="radio" name="home-house" checked={false} />
+          <label htmlFor="mas-tres-dairy">Adosado</label>
+        </form>
+      );
+    case "home-metres":
+      return (
+        <form>
+          <h2>Hogar</h2>
+          <h3>¿Cuántos m2 tiene tu vivienda?</h3>
+          <input value="2" id="menos-cincuenta" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
+          <label htmlFor="menos-cincuenta">Menos de 50 m2</label>
+
+          <input value="3" id="cincuenta-ochenta" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
+          <label htmlFor="cincuenta-ochenta">Entre 50 y 80 m2</label>
+
+          <input value="4" id="ochenta-cientoveinte" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
+          <label htmlFor="ochenta-cientoveinte">Entre 80 y 120 m2</label>
+
+          <input value="4" id="cientoveinte-trescientos" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
+          <label htmlFor="cientoveinte-trescientos">Entre 120 y 300 m2</label>
+
+          <input value="4" id="mas-trescientos-m2" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
+          <label htmlFor="mas-trescientos-m2">Mas de 300 m2</label>
+        </form>
+      );
+    case "home-people":
+      return (
+        <form>
+          <h2>Hogar</h2>
+          <h3>¿cuántas personas convivís en casa?</h3>
+          <input value="2" id="uno-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
+          <label htmlFor="uno-gente">1</label>
+
+          <input value="3" id="dos-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
+          <label htmlFor="dos-gente">2</label>
+
+          <input value="4" id="tres-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
+          <label htmlFor="tres-gente">3</label>
+
+          <input value="4" id="cuatro-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
+          <label htmlFor="cuatro-gente">4</label>
+
+          <input value="4" id="cinco-mas-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
+          <label htmlFor="cinco-mas-gente">5 o +</label>
+        </form>
+      );
+    case "home-heat":
+      return (
+        <form>
+          <h2>Hogar</h2>
+          <h3>¿Qué tipo de energía empleas para calentar tu hogar?</h3>
+          <input value="2" id="electrica-heat" onChange={handleChangeHomeHeat} type="radio" name="home-heat" checked={false} />
+          <label htmlFor="electrica-heat">Eléctrica</label>
+
+          <input value="3" id="gas-heat" onChange={handleChangeHomeHeat} type="radio" name="home-heat" checked={false} />
+          <label htmlFor="gas-heat">Gas</label>
+
+          <input value="4" id="gasoleo-heat" onChange={handleChangeHomeHeat} type="radio" name="home-heat" checked={false} />
+          <label htmlFor="gasoleo-heat">Gasoleo</label>
+        </form>
+      );
+    case "end-form":
+      return (
+        <div>
+          <img />
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa laudantium unde quibusdam iure odio, repellat eos enim quidem soluta aliquid? Quis beatae voluptates provident culpa tempore necessitatibus laboriosam eum eaque.</p>
+          <button>Aceptar</button>
+          <button>Colaborar con más proyectos</button>
+        </div>
+      );
+  }
+
+  return (
+    <div>Hola</div>
+  )
+
+}
+
+export default InitialForm;
+
+
+/*
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
@@ -103,3 +295,4 @@ const House = () => {
 };
 
 export default House;
+*/
