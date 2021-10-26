@@ -11,6 +11,8 @@ app.use(cors())
 const authRoutes = require('./routes/auth.routes')
 const infoRoutes = require('./routes/info.routes')
 const updatesRoutes = require('./routes/updates.routes')
+const rankingRoutes = require('./routes/ranking.routes')
+
 
 // morgan
 app.use(morgan('dev'));
@@ -28,6 +30,10 @@ app.use('/info/', infoRoutes)
 
 // user_updates
 app.use('/updates/', updatesRoutes)
+
+// ranking
+app.use('/ranking/', rankingRoutes)
+
 
 
 const port = process.env.PORT || 3001
