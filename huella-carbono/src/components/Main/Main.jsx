@@ -23,8 +23,8 @@ const Main = () => {
   return (
     <div className="main">
       <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/carousel" component={Carousel} />
+        <Route path="/" component={Carousel} exact />
+        {/* <Route path="/carousel" component={Carousel} /> */}
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/initial-form" component={InitialForm} />

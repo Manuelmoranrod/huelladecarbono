@@ -34,7 +34,7 @@ const LoginGoogle = () => {
       } else {
         sessionStorage.setItem('token', token)
         setUser(token)
-        history.push('/')
+        history.push('/profile')
       }
     } catch (err) {
       console.log(err);
