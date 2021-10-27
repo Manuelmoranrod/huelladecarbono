@@ -14,10 +14,16 @@ import Transport from "../Transport";
 import Food from "../Food";
 import House from "../House";
 import Ranking from "../Ranking";
-import Premiumsub from "../Premiumsub";
-import Midsub from "../Midsub";
-import Lowsub from "../Lowsub";
 import MyPlan from "../MyPlan/MyPlan";
+import Efficient from "../Efficient";
+import Thanks from "../Thanks";
+import Actions from "../Actions";
+import Colaborationtrees from "../Colaborationtrees";
+import Zero from "../Zero";
+import Colaborationzero from "../Colaborationzero";
+import Plantzero from "../Plantzero";
+import Payment from "../Payment";
+import Thankspay from "../Thankspay";
 
 
 const Main = () => {
@@ -35,11 +41,17 @@ const Main = () => {
         <Route path="/profile" component={Profile} />
         <Route path="/ranking" component={Ranking} />
         <Route path="/compensate" component={Compensate} />
+        <Route path="/efficient" component={Efficient} />
+        <Route path="/thanks" component={Thanks} />
         <Route path="/track" component={Track} />
-        <Route path="/premiumsub" component={Premiumsub} />
-        <Route path="/midsub" component={Midsub} />
-        <Route path="/lowsub" component={Lowsub} />
+        <Route path="/actions" component={Actions} />
+        <Route path="/colaboration-trees" component={Colaborationtrees} />
+        <Route path="/colaboration-zero" component={Colaborationzero} />
+        <Route path="/zero" component={Zero} />
+        <Route path="/plant-zero" component={Plantzero} />
         <Route path="/firstlogingoogle" component={FirstLoginGoogle} />
+        <Route path="/payment" component={Payment} />
+        <Route path="/thanks-pay" component={Thankspay} />
         <Route component={Error} />
       </Switch>
     </div>

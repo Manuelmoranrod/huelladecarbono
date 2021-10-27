@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Premiumsub from "./Premiumsub";
+import Colaborationtrees from "./Colaborationtrees";
 
-describe("Premiumsub", () => {
+describe("Colaborationtrees", () => {
   test("matches snapshot", () => {
-    const wrapper = shallow(<Premiumsub />);
+    const wrapper = shallow(<Colaborationtrees />);
     expect(wrapper).toMatchSnapshot();
   });
 });
