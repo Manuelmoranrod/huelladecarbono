@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Midsub from "./Midsub";
+import Efficient from "./Efficient";
 
-describe("Midsub", () => {
+describe("Efficient", () => {
   test("matches snapshot", () => {
-    const wrapper = shallow(<Midsub />);
+    const wrapper = shallow(<Efficient />);
     expect(wrapper).toMatchSnapshot();
   });
 });

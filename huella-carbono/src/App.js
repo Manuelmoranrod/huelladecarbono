@@ -26,7 +26,11 @@ function App() {
       <userContext.Provider value={{ user, setUser }}>
         <BrowserRouter>
           <Main />
-          <Navbar />
+          {
+            user
+            ? <Navbar /> 
+            : null
+          }
         </BrowserRouter>
       </userContext.Provider>
     </div>
