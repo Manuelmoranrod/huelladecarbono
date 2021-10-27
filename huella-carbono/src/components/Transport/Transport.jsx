@@ -2,10 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from 'axios';
 import { useHistory } from "react-router";
 import { useStep } from "react-hooks-helper";
+import { Link } from 'react-router-dom'
 
 // Context
 import userContext from "../../context/userContext";
 
+// Iconos
+import iconBici from '../../assets/form-transport-bici.svg'
 
 const defaultData = {
   "transport-vehicle": "",
@@ -151,9 +154,9 @@ const Transport = () => {
     }
 
     axios.post('http://localhost:3001/updates/post-update', {
-    	type: 'transport',
-    	value: finalNum,
-    	token: user
+      type: 'transport',
+      value: finalNum,
+      token: user
     })
   }
 
@@ -168,98 +171,113 @@ const Transport = () => {
   switch (step.id) {
     case "transport-vehicle":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconBici} alt="logo-bicicleta" />
           <h2>Transporte</h2>
           <h3>¿Cómo te has desplazado hoy?</h3>
-          <input value="coche" id="coche" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
-          <label htmlFor="coche">Coche</label>
+          <div className="inputs-block">
+            <input value="coche" id="coche" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+            <label htmlFor="coche">Coche</label>
 
-          <input value={dataTransport.averageBus} id="bus" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
-          <label htmlFor="bus">Bus</label>
+            <input value={dataTransport.averageBus} id="bus" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+            <label htmlFor="bus">Bus</label>
 
-          <input value={dataTransport.averageMetro} id="tren-metro" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
-          <label htmlFor="tren-metro">Tren / Metro</label>
+            <input value={dataTransport.averageMetro} id="tren-metro" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+            <label htmlFor="tren-metro">Tren / Metro</label>
 
-          <input value={dataTransport.averageMoto} id="moto" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
-          <label htmlFor="moto">Moto</label>
+            <input value={dataTransport.averageMoto} id="moto" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+            <label htmlFor="moto">Moto</label>
 
-          <input value="0" id="bici" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
-          <label htmlFor="bici">En bici</label>
+            <input value="0" id="bici" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+            <label htmlFor="bici">En bici</label>
 
-          <input value="0" id="pie" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
-          <label htmlFor="pie">A pie</label>
+            <input value="0" id="pie" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+            <label htmlFor="pie">A pie</label>
 
-          <input value="avion" id="avion" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
-          <label htmlFor="avion">En avión</label>
+            <input value="avion" id="avion" onChange={handleChangeTransporVehicle} type="radio" name="transport-vehicle" />
+            <label htmlFor="avion">En avión</label>
+          </div>
         </form>
       );
     case "transport-fuel":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconBici} alt="logo-bicicleta" />
           <h2>Transporte</h2>
           <h3>¿En qué tipo de coche te has movido hoy?</h3>
-          <input value={dataTransport.averageDiesel} id="diesel" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
-          <label htmlFor="diesel">Diesel</label>
+          <div className="inputs-block">
+            <input value={dataTransport.averageDiesel} id="diesel" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
+            <label htmlFor="diesel">Diesel</label>
 
-          <input value={dataTransport.averagePetrol} id="gasolina" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
-          <label htmlFor="gasolina">Gasolina</label>
+            <input value={dataTransport.averagePetrol} id="gasolina" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
+            <label htmlFor="gasolina">Gasolina</label>
 
-          <input value={dataTransport.averageHybrid} id="hibrido" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
-          <label htmlFor="hibrido">Híbrido</label>
+            <input value={dataTransport.averageHybrid} id="hibrido" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
+            <label htmlFor="hibrido">Híbrido</label>
 
-          <input value={dataTransport.averageElectric} id="electrico" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
-          <label htmlFor="electrico">Eléctrico</label>
+            <input value={dataTransport.averageElectric} id="electrico" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
+            <label htmlFor="electrico">Eléctrico</label>
 
-          <input value={dataTransport.averageGas} id="gas" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
-          <label htmlFor="gas">Gas</label>
+            <input value={dataTransport.averageGas} id="gas" onChange={handleChangeTransporFuel} type="radio" name="transport-fuel" checked={false} />
+            <label htmlFor="gas">Gas</label>
+          </div>
         </form>
       );
     case "transport-km":
       return (
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={(e) => e.preventDefault()} className="form-block">
+          <img src={iconBici} alt="logo-bicicleta" />
           <h2>Transporte</h2>
           <h3>¿Cuántos km te has movido?</h3>
-          <input value={radioTransportKm} onChange={handleChangeTransporKm} type="number" name="transport-km" />
-          <button type="button" onClick={handleNextTransporKm}>Siguiente</button>
+          <div className="inputs-text-block">
+            <input value={radioTransportKm} onChange={handleChangeTransporKm} type="number" name="transport-km" />
+            <button type="button" onClick={handleNextTransporKm}>Siguiente</button>
+          </div>
         </form>
       );
     case "transport-flys-time":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconBici} alt="logo-bicicleta" />
           <h2>Transporte</h2>
           <h3>¿Qué duración tuvieron?</h3>
-          <input value="sort" id="2-h" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
-          <label htmlFor="2-h"> {'<2h'} </label>
+          <div className="inputs-block">
+            <input value="sort" id="2-h" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
+            <label htmlFor="2-h"> {'<2h'} </label>
 
-          <input value="mid" id="2-4-h" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
-          <label htmlFor="2-4-h">Entre 2 y 4h</label>
+            <input value="mid" id="2-4-h" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
+            <label htmlFor="2-4-h">Entre 2 y 4h</label>
 
-          <input value="long" id="mas-cuatro-h" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
-          <label htmlFor="mas-cuatro-h">+4h</label>
+            <input value="long" id="mas-cuatro-h" onChange={handleChangeTransporFlysTime} type="radio" name="transport-flys-time" />
+            <label htmlFor="mas-cuatro-h">+4h</label>
+          </div>
         </form>
       );
     case "transport-flys-class":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconBici} alt="logo-bicicleta" />
           <h2>Transporte</h2>
           <h3>¿En qué tipo de clase has viajado?</h3>
-          <input value="economy" id="2" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
-          <label htmlFor="2">Económia</label>
+          <div className="inputs-block">
+            <input value="economy" id="2" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
+            <label htmlFor="2">Económia</label>
 
-          <input value="business" id="business" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
-          <label htmlFor="business">Business</label>
+            <input value="business" id="business" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
+            <label htmlFor="business">Business</label>
 
-          <input value="first-class" id="first-class" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
-          <label htmlFor="first-class">First class</label>
+            <input value="first-class" id="first-class" onChange={handleChangeTransporFlysClass} type="radio" name="transport-flys-class" checked={false} />
+            <label htmlFor="first-class">First class</label>
+          </div>
         </form>
       );
     case "end-form":
       return (
-        <div>
-          <img />
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa laudantium unde quibusdam iure odio, repellat eos enim quidem soluta aliquid? Quis beatae voluptates provident culpa tempore necessitatibus laboriosam eum eaque.</p>
-          <button type="button" onClick={handleSubmitAllForm}>Aceptar</button>
-          <button>Colaborar con más proyectos</button>
+        <div className="final-form-daily">
+          <h2>¡Lo estás haciendo genial!</h2>
+          <p>Gracias a tu progreso y al de personas comprometidas con el medioambiente como tú las emisiones de {'CO2'} de tu ciudad están reduciéndose.</p>
+          <Link to="/profile"><button className="colaboration" type="button" onClick={handleSubmitAllForm}>Colabora con más proyectos</button></Link>
+          <Link to="/profile"><button className="go-profile" type="button" onClick={handleSubmitAllForm}>Volver a mi perfil</button></Link>
         </div>
       );
   }

@@ -26,7 +26,7 @@ function App() {
     <div className="App">
       <userContext.Provider value={{ user, setUser }}>
         <BrowserRouter>
-          <Header />
+          {/* <Header /> */}
           <Main />
           <Navbar />
         </BrowserRouter>

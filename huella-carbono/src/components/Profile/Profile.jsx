@@ -1,14 +1,23 @@
 import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import Chart from "react-apexcharts";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
+
+//Mui
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 // Context
 import userContext from "../../context/userContext";
 
+// Imagenes
+import firstPlan from '../../assets/plan-first-profile.png'
+import iconEngranaje from '../../assets/engranaje-icon.svg'
+
 const options = {
   chart: {
-    height: 300,
+    height: 200,
     type: 'radialBar',
   },
   plotOptions: {
@@ -17,7 +26,7 @@ const options = {
       inverseOrder: true,
       hollow: {
         margin: 5,
-        size: '48%',
+        size: '25%',
         background: 'transparent',
 
       },
@@ -41,7 +50,7 @@ const options = {
     offsetX: 70,
     offsetY: 240
   },
-  // colors: ['#FDDB3A', '#52575D', '#F6F4E6', '#41444B'],
+  colors: ['#26A0FC', '#FEBC3B', '#FF6178'],
 }
 
 
@@ -49,11 +58,14 @@ const options = {
 
 const Profile = () => {
 
+  const history = useHistory()
+
   // States
   const [kgTotal, setKgTotal] = useState(0)
   const [food, setFood] = useState(0);
   const [transport, setTransport] = useState(0);
   const [home, setHome] = useState(0);
+  const [alias, setAlias] = useState('');
 
   // Context
   const { user, setUser } = useContext(userContext);
@@ -63,11 +75,14 @@ const Profile = () => {
 
 
   useEffect(() => {
+    if (user === null) {
+      history.push('/')
+    }
+
     async function getData() {
       const response = await axios.post('http://localhost:3001/info/get-info', {
         token: user
       });
-
       // Sacamos los porcentajes para la grafica sobre el total
       const calcFood = (response.data.food * 100) / response.data.totalKg
       const calcTransport = (response.data.transport * 100) / response.data.totalKg
@@ -77,58 +92,89 @@ const Profile = () => {
       setFood(calcFood.toFixed(2));
       setTransport(calcTransport.toFixed(2));
       setHome(calcHome.toFixed(2));
+      setAlias(response.data.alias)
     }
     getData()
   }, [])
 
+  const handleLogout = () => {
+    setUser(null)
+    sessionStorage.removeItem('token')
+    history.push('/')
+  }
+
+  // dashboard
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  //
+
   return (
-    <>
-      {
-        user === null
-          ? <Redirect to="/" />
-          : <div className="profile">
-            <div className="profile-content">
-              <h1>Hola Alias,</h1>
-              <p className="p-co2">Tu medida de <br /> emisiones semanales</p>
-              <span className="span-co2">{kgTotal} kg</span>
+    <div className="profile">
+      <button className="button-engranaje" onClick={handleClick}>
 
-              <div className="div-mid-spain-button">
-                <div>
-                  <p>170kg CO2</p>
-                  <span>Persona media en España</span>
-                </div>
-                <Link to="/track"><button>Track diario</button></Link>
-              </div>
+        <img src={iconEngranaje} />
+      </button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
+      </Menu>
+      <div className="profile-content">
+        <h1>Hola {alias},</h1>
+        <p className="p-co2">Tu medida de <br /> emisiones semanales</p>
+        <span className="span-co2">{kgTotal} kg <span className="span-co2-light">CO2</span></span>
 
-              <div className="div-chart-percentage">
+        <div className="div-chart-percentage">
 
-                <Chart
-                  options={options}
-                  series={series}
-                  type="radialBar"
-                  width="300"
-                />
+          <div className="chart-box">
+            <Chart
+              options={options}
+              series={series}
+              type="radialBar"
+              width="200"
+            />
+          </div>
 
-                <div>
-                  <p>Alimenación {food}%</p>
-                  <p>Transporte {transport}%</p>
-                  <p>Hogar {home}%</p>
-                </div>
+          <div>
+            <div className="column-data-chart">
+              <p className="alimentacion">Alimenación</p>
+              <p className="transporte">Transporte</p>
+              <p className="hogar">Hogar</p>
+            </div>
 
-              </div>
-
-              <h2>Tu progreso</h2>
-
-              <div className="papa">
-                <div className="hijo" style={{width: `${30}%`}}></div>
-              </div>
-
-              <button className="button-compensar">Compensar mi huella</button>
-
+            <div className="column-data-chart last-column">
+              <p>{food}%</p>
+              <p>{transport}%</p>
+              <p>{home}%</p>
             </div>
           </div>
-      }
-    </>
+
+        </div>
+
+        <span className="media-espana">*Persona media en España 170 kg CO2</span>
+
+        <h2>Tu progreso</h2>
+
+        <div className="plan-conteiner">
+          <img src={firstPlan} alt="plan" />
+        </div>
+
+        <button onClick={() => history.push("/compensate")} className="button-compensar">Ver mis planes</button>
+
+      </div>
+    </div>
   );
 };
 

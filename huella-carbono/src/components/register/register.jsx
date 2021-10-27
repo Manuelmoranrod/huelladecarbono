@@ -13,7 +13,6 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import userContext from "../../context/userContext";
 
 
-
 const Register = () => {
 
   const history = useHistory()
@@ -72,7 +71,7 @@ const Register = () => {
               <h1>Crea tu cuenta</h1>
 
               <label htmlFor="username">Alias</label>
-              <input {...register("username", { required: true, minLength: 6 })} />
+              <input placeholder="Alitron496" {...register("username", { required: true, minLength: 6 })} />
               <p className="form-error">{errors.username?.type === 'required' && "El Alias es obligatorio"}</p>
               <p className="form-error">{errors.username?.type === 'minLength' && "Alias debe tener al menos 6 caracteres"}</p>
 
@@ -137,14 +136,14 @@ const Register = () => {
 
 
               <label htmlFor="email">Email</label>
-              <input {...register("email", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} />
+              <input placeholder="alicia@gmail.com" {...register("email", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })} />
               <p className="form-error">{errors.email?.type === 'required' && "El campo email es obligatorio"}</p>
               <p className="form-error">{errors.email?.type === 'pattern' && "Debes intrucir un formato de email valido"}</p>
               <p className="form-error">{errors.apiError && errors.apiError.message}</p>
 
               <label htmlFor="password">Contraseña</label>
               <div className="input-password">
-                <input type={inputPassword} {...register("password", { required: true, pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/ })} />
+                <input placeholder="!80kDps03" type={inputPassword} {...register("password", { required: true, pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/ })} />
                 {inputPassword === 'password'
                   ? <VisibilityIcon className="eye-icon" onClick={() => setInputPassword('text')} />
                   : <VisibilityOffIcon className="eye-icon" onClick={() => setInputPassword('password')} />
@@ -159,7 +158,7 @@ const Register = () => {
               </div>
               <p className="form-error">{errors.privacidad?.type === 'required' && "Debe aceptar las condiciones de privacidad para continuar"}</p>
 
-              <input className="button-enviar" type="submit" />
+              <input className="button-enviar" type="submit" value="Crear"/>
 
               <div className="box-google-login">
                 <LoginGoogle />

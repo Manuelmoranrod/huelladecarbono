@@ -39,7 +39,8 @@ const infoControllers = {
             totalKg,
             food: FOOD,
             transport: TRANSPORT,
-            home: HOME
+            home: HOME,
+            alias: user.username
         })
         console.log(RowDataPacket);
     },
