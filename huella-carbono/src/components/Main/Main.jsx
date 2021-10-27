@@ -17,6 +17,7 @@ import Ranking from "../Ranking";
 import Premiumsub from "../Premiumsub";
 import Midsub from "../Midsub";
 import Lowsub from "../Lowsub";
+import MyPlan from "../MyPlan/MyPlan";
 
 
 const Main = () => {
@@ -24,8 +25,8 @@ const Main = () => {
     <div className="main">
       <Switch>
         <Route path="/" component={Carousel} exact />
-        {/* <Route path="/carousel" component={Carousel} /> */}
         <Route path="/login" component={Login} />
+        <Route path="/myplan" component={MyPlan} />
         <Route path="/register" component={Register} />
         <Route path="/initial-form" component={InitialForm} />
         <Route path="/form-transport" component={Transport} />

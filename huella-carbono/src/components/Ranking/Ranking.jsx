@@ -90,12 +90,14 @@ const conditionalRowStyles = [
   {
     when: row => row.position === 1,
     style: {
-      backgroundColor: 'green',
+      backgroundColor: '#80AE09',
       color: 'white',
       '&:hover': {
         cursor: 'pointer',
       },
     },
+    
+    
   },
 ];
 
@@ -123,9 +125,10 @@ const Ranking = () => {
     {user ? 
       <div className="ranking">
       <h1>Ranking</h1>
+      <p>Mira cómo vas subiendo de puestos al reducir tu huella</p>
       <DataTable
             columns={columns}
-            data={datainfo}
+            data={data}
             customStyles={customStyles}
             conditionalRowStyles={conditionalRowStyles}
             pagination
@@ -133,6 +136,7 @@ const Ranking = () => {
     </div> : 
     <div className="ranking">
       <h1>Ranking</h1>
+      <p>Mira cómo vas subiendo de puestos al reducir tu huella</p>
       <DataTable
             columns={columns}
             data={data}

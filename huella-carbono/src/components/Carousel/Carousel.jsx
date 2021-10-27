@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import one from "../../assets/c-one-letra.svg";
 import two from "../../assets/c-two-letra.svg";
 import three from "../../assets/c-three-letra.svg";
+import logo from "../../assets/logo.svg"
 
 
 const FirstCarousel = () => {
@@ -21,21 +22,24 @@ const FirstCarousel = () => {
         infiniteLoop={false}
       >
         <div>
-          <img src={one} />
+          <img src={one} alt="industria"/>
         </div>
         <div>
-          <img src={two} />
+          <img src={two} alt="huerto"/>
         </div>
         <div>
-          <img src={three} />
+          <img src={three} alt="transporte"/>
         </div>
         <div>
-          <div>Logo app</div>
-          <p>Eslogan de la app</p>
-          <Link to="/register"><button>CREAR CUENTA</button></Link><br />
-          <Link to="/login"><button>LOGIN</button></Link>
+          <div>
+            <img className="logo" src={logo} alt="logo"/>
+          </div>
+          <div className="lema"><p>Aqui es donde empieza el cambio</p></div>
+          <Link to="/register"><button className="button-verde">Crear cuenta</button></Link><br/>
+          <Link to="/firstlogingoogle"><button className="button-blanco">Acceder con Google</button></Link>
+          <Link to="/login"><button className="button-borde">Acceder</button></Link>
         </div>
-      </Carousel>
+      </Carousel> 
     </div>
   );
 };
