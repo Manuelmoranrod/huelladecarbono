@@ -1,0 +1,26 @@
+.nav-bar {
+    height: 60px;
+    width: 100%;
+    background-color: $primario-light;
+    position: absolute;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    
+    
+    & > ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        > li{
+            margin-top: 10px;
+            list-style: none;
+
+            > a {
+                text-decoration: none;
+                font-size: 20px;
+            }
+        }
+    }
+}
