@@ -65,7 +65,7 @@ const Register = () => {
     <>
       {
         user
-          ? <Redirect to="/" />
+          ? <Redirect to="/profile" />
           : <div className="register">
             <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
               <h1>Crea tu cuenta</h1>

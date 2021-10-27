@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Lowsub from "./Lowsub";
+import Actions from "./Actions";
 
-describe("Lowsub", () => {
+describe("Actions", () => {
   test("matches snapshot", () => {
-    const wrapper = shallow(<Lowsub />);
+    const wrapper = shallow(<Actions />);
     expect(wrapper).toMatchSnapshot();
   });
 });
