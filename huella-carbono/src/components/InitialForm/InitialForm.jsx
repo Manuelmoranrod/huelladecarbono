@@ -314,7 +314,7 @@ const InitialForm = () => {
 
 		}
 
-		console.log(totalTransport);
+		console.log('transport', totalTransport);
 		// Transport
 
 
@@ -342,9 +342,10 @@ const InitialForm = () => {
 		if (Number(defaultData["food-dairy"]) > 0) {
 			console.log('entra dairy');
 			totalFood += Number(defaultData["food-dairy"]) * dataAllTables.numbersFood.dairy;
-			console.log(totalFood);
+			// console.log(totalFood);
 		}
 
+		console.log('food', totalFood);
 		// Food
 
 
@@ -352,41 +353,44 @@ const InitialForm = () => {
 		let totalHome = 0
 
 		if (defaultData["home-house"] === 'piso') {
-			console.log('piso');
 			if (defaultData["home-heat"] === "electrica") {
-				totalHome = ((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.electricFlat) / Number(defaultData["home-people"])) * 183
+				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.electricFlat) / Number(defaultData["home-people"])) * 365) / 52
 			} else if (defaultData["home-heat"] === "gas") {
-				totalHome = ((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.gasFlat) / Number(defaultData["home-people"])) * 183
+				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.gasFlat) / Number(defaultData["home-people"])) * 365) / 52
 			} else if (defaultData["home-heat"] === "gasoleo") {
-				totalHome = ((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.fuelFlat) / Number(defaultData["home-people"])) * 183
+				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.fuelFlat) / Number(defaultData["home-people"])) * 365) / 52
 			}
 
 		}
 
 		if (defaultData["home-house"] === 'casa') {
-			console.log('casa');
 			if (defaultData["home-heat"] === "electrica") {
-				totalHome = (Number(defaultData["home-metres"]) * dataAllTables.numbersHome.electricHouse) / Number(defaultData["home-people"])
+				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.electricHouse) / Number(defaultData["home-people"])) * 365) / 52
 			} else if (defaultData["home-heat"] === "gas") {
-				totalHome = (Number(defaultData["home-metres"]) * dataAllTables.numbersHome.gasHouse) / Number(defaultData["home-people"])
+				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.gasHouse) / Number(defaultData["home-people"])) * 365 ) / 52
 			} else if (defaultData["home-heat"] === "gasoleo") {
-				totalHome = (Number(defaultData["home-metres"]) * dataAllTables.numbersHome.fuelHouse) / Number(defaultData["home-people"])
+				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.fuelHouse) / Number(defaultData["home-people"])) * 365 ) /52
 			}
 
 		}
 
-		console.log(totalHome);
+		console.log('home', totalHome);
 
+
+		
 		// House
+		totalTransport += 33;
+		totalFood += 33;
+		totalHome += 33;
+		
+		console.log('final', (totalHome + totalTransport + totalFood));
 
-
-
-		// axios.post('http://localhost:3001/info/post-info', {
-		// 	transport,
-		// 	food,
-		// 	home,
-		// 	token: user
-		// })
+		axios.post('http://localhost:3001/info/post-info', {
+			transport: totalTransport,
+			food: totalFood,
+			home: totalHome,
+			token: user
+		})
 	}
 
 	console.log('la buena data ', dataAllTables);

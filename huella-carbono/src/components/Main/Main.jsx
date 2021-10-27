@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../Home';
 import Login from '../Login';
 import Error from '../Error';
-import Register from "../Register/Register";
+import Register from "../Register";
 import Profile from "../Profile/Profile";
 import Compensate from "../Compensate/Compensate";
 import Carousel from "../Carousel/Carousel";
