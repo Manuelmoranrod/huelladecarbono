@@ -6,6 +6,7 @@ import Error from '../Error';
 import Register from "../Register/Register";
 import Profile from "../Profile/Profile";
 import Compensate from "../Compensate/Compensate";
+import Carousel from "../Carousel/Carousel";
 import Track from "../Track/Track";
 import FirstLoginGoogle from "../FirstLoginGoogle";
 import InitialForm from "../InitialForm";
@@ -22,7 +23,8 @@ const Main = () => {
   return (
     <div className="main">
       <Switch>
-        <Route path="/" component={Home} exact />
+        <Route path="/" component={Carousel} exact />
+        {/* <Route path="/carousel" component={Carousel} /> */}
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/initial-form" component={InitialForm} />
