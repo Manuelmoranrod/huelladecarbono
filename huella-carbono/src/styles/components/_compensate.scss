@@ -1,11 +1,14 @@
 .container {
     padding: 10px;
+    background-color: $primary-fondos;
     .cabecera {
-        background-color: rgb(199, 194, 194);
+        background-color: $primary-fondos;
         height: 10%;
         padding: 15px;
         position: sticky;
         top:0;
+        color:$dark;
+        
     }
 
     .plan-card {

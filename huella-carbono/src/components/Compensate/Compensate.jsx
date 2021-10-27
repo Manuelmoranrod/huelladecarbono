@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Compensate = () => {
@@ -7,7 +7,7 @@ const Compensate = () => {
     <div className="container">
       <div className="cabecera">
         <h1>Planes</h1>
-        <p>Breve apartado sobre los tipos de planes que hay bla bla bla</p>
+        <p>Aquí es dónde empieza el cambio. Descubre nuestros planes con iniciativas sostenibles para compensar tu huella de carbono.</p>
       </div>
       <div className="plan-card">
         <div className="img">
