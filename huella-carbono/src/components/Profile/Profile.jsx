@@ -12,8 +12,9 @@ import MenuItem from '@mui/material/MenuItem';
 import userContext from "../../context/userContext";
 
 // Imagenes
-import firstPlan from '../../assets/plan-first-profile.png'
-import iconEngranaje from '../../assets/engranaje-icon.svg'
+import firstPlan from '../../assets/plan-first-profile.png';
+import iconEngranaje from '../../assets/engranaje-icon.svg';
+
 
 const options = {
   chart: {
@@ -171,7 +172,7 @@ const Profile = () => {
           <img src={firstPlan} alt="plan" />
         </div>
 
-        <button onClick={() => history.push("/compensate")} className="button-compensar">Ver mis planes</button>
+        <Link to="/myplan"><button className="button-compensar">Ver todos los planes</button></Link>
 
       </div>
     </div>

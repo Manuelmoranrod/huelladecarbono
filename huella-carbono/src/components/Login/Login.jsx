@@ -51,7 +51,7 @@ const Login = () => {
     <>
       {
         user
-          ? <Redirect to="/" />
+          ? <Redirect to="/profile" />
           : <div className="login">
             <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
               <h1>Accede a tu perfil</h1>

@@ -14,6 +14,7 @@ import Transport from "../Transport";
 import Food from "../Food";
 import House from "../House";
 import Ranking from "../Ranking";
+import MyPlan from "../MyPlan/MyPlan";
 import Efficient from "../Efficient";
 import Thanks from "../Thanks";
 import Actions from "../Actions";
@@ -31,6 +32,7 @@ const Main = () => {
       <Switch>
         <Route path="/" component={Carousel} exact />
         <Route path="/login" component={Login} />
+        <Route path="/myplan" component={MyPlan} />
         <Route path="/register" component={Register} />
         <Route path="/initial-form" component={InitialForm} />
         <Route path="/form-transport" component={Transport} />
