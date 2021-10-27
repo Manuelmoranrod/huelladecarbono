@@ -16,6 +16,7 @@ const infoControllers = {
             res.status(200).send({message: 'Ok'})
         } catch(err){
             res.status(400).send({message: err})
+            console.log('fixed');
         } 
     },
 
@@ -39,7 +40,8 @@ const infoControllers = {
             totalKg,
             food: FOOD,
             transport: TRANSPORT,
-            home: HOME
+            home: HOME,
+            alias: user.username
         })
         console.log(RowDataPacket);
     },

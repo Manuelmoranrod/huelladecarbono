@@ -2,10 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from 'axios';
 import { useHistory } from "react-router";
 import { useStep } from "react-hooks-helper";
+import { Link } from "react-router-dom";
 
 // Context
 import userContext from "../../context/userContext";
 
+import iconFood from '../../assets/form-food-icon.svg'
 
 const defaultData = {
   "food-meet": "",
@@ -132,9 +134,9 @@ const Food = () => {
 
 
     axios.post('http://localhost:3001/updates/post-update', {
-    	type: 'food',
-    	value: totalNum,
-    	token: user
+      type: 'food',
+      value: totalNum,
+      token: user
     })
   }
 
@@ -150,89 +152,104 @@ const Food = () => {
   switch (step.id) {
     case "food-meet":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconFood} alt="logo-bicicleta" />
           <h2>Alimentación</h2>
           <h3>Hoy he comido carne:</h3>
-          <input value="0" id="no-meet" onChange={handleChangeFoodMeet} type="radio" name="food-meet" checked={false} />
-          <label htmlFor="no-meet">No</label>
+          <div className="inputs-block">
+            <input value="0" id="no-meet" onChange={handleChangeFoodMeet} type="radio" name="food-meet" checked={false} />
+            <label htmlFor="no-meet">No</label>
 
-          <input value="1" id="uno-vez" onChange={handleChangeFoodMeet} type="radio" name="food-meet" checked={false} />
-          <label htmlFor="uno-vez">1 vez</label>
+            <input value="1" id="uno-vez" onChange={handleChangeFoodMeet} type="radio" name="food-meet" checked={false} />
+            <label htmlFor="uno-vez">1 vez</label>
 
-          <input value="2" id="dos-veces" onChange={handleChangeFoodMeet} type="radio" name="food-meet" checked={false} />
-          <label htmlFor="dos-veces">2 veces</label>
+            <input value="2" id="dos-veces" onChange={handleChangeFoodMeet} type="radio" name="food-meet" checked={false} />
+            <label htmlFor="dos-veces">2 veces</label>
+          </div>
         </form>
       );
     case "food-meet-type":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconFood} alt="logo-bicicleta" />
           <h2>Alimentación</h2>
           <h3>¿De qué tipo?</h3>
-          <input value={dataTransport.meetPig} id="cerdo" onChange={handleChangeFoodMeetType} type="radio" name="food-meet-type" checked={false} />
-          <label htmlFor="cerdo">Cerdo</label>
+          <div className="inputs-block">
+            <input value={dataTransport.meetPig} id="cerdo" onChange={handleChangeFoodMeetType} type="radio" name="food-meet-type" checked={false} />
+            <label htmlFor="cerdo">Cerdo</label>
 
-          <input value={dataTransport.meetCow} id="vaca" onChange={handleChangeFoodMeetType} type="radio" name="food-meet-type" checked={false} />
-          <label htmlFor="vaca">Vaca</label>
+            <input value={dataTransport.meetCow} id="vaca" onChange={handleChangeFoodMeetType} type="radio" name="food-meet-type" checked={false} />
+            <label htmlFor="vaca">Vaca</label>
 
-          <input value={dataTransport.meetLamb} id="cordero" onChange={handleChangeFoodMeetType} type="radio" name="food-meet-type" checked={false} />
-          <label htmlFor="cordero">Cordero</label>
+            <input value={dataTransport.meetLamb} id="cordero" onChange={handleChangeFoodMeetType} type="radio" name="food-meet-type" checked={false} />
+            <label htmlFor="cordero">Cordero</label>
 
-          <input value={dataTransport.meetChicken} id="pollo" onChange={handleChangeFoodMeetType} type="radio" name="food-meet-type" checked={false} />
-          <label htmlFor="pollo">Pollo</label>
+            <input value={dataTransport.meetChicken} id="pollo" onChange={handleChangeFoodMeetType} type="radio" name="food-meet-type" checked={false} />
+            <label htmlFor="pollo">Pollo</label>
+          </div>
         </form>
       );
     case "food-fish":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconFood} alt="logo-bicicleta" />
           <h2>Alimentación</h2>
           <h3>Hoy he comido pescado:</h3>
-          <input value="0" id="no-fish" onChange={handleChangeFoodFish} type="radio" name="food-fish" checked={false} />
-          <label htmlFor="no-fish">No</label>
+          <div className="inputs-block">
+            <input value="0" id="no-fish" onChange={handleChangeFoodFish} type="radio" name="food-fish" checked={false} />
+            <label htmlFor="no-fish">No</label>
 
-          <input value="1" id="una-vez-fish" onChange={handleChangeFoodFish} type="radio" name="food-fish" checked={false} />
-          <label htmlFor="una-vez-fish">1 vez</label>
+            <input value="1" id="una-vez-fish" onChange={handleChangeFoodFish} type="radio" name="food-fish" checked={false} />
+            <label htmlFor="una-vez-fish">1 vez</label>
 
-          <input value="2" id="dos-veces-fish" onChange={handleChangeFoodFish} type="radio" name="food-fish" checked={false} />
-          <label htmlFor="dos-veces-fish">2 veces</label>
+            <input value="2" id="dos-veces-fish" onChange={handleChangeFoodFish} type="radio" name="food-fish" checked={false} />
+            <label htmlFor="dos-veces-fish">2 veces</label>
+          </div>
         </form>
       );
     case "food-eggs":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconFood} alt="logo-bicicleta" />
           <h2>Alimentación</h2>
           <h3>Hoy he comido huevos:</h3>
-          <input value="0" id="no-eggs" onChange={handleChangeFoodEggs} type="radio" name="food-eggs" checked={false} />
-          <label htmlFor="no-eggs">No</label>
+          <div className="inputs-block">
+            <input value="0" id="no-eggs" onChange={handleChangeFoodEggs} type="radio" name="food-eggs" checked={false} />
+            <label htmlFor="no-eggs">No</label>
 
-          <input value="1" id="uno-vez-eggs" onChange={handleChangeFoodEggs} type="radio" name="food-eggs" checked={false} />
-          <label htmlFor="uno-vez-eggs">1 vez</label>
+            <input value="1" id="uno-vez-eggs" onChange={handleChangeFoodEggs} type="radio" name="food-eggs" checked={false} />
+            <label htmlFor="uno-vez-eggs">1 vez</label>
 
-          <input value="2" id="dos-veces-eggs" onChange={handleChangeFoodEggs} type="radio" name="food-eggs" checked={false} />
-          <label htmlFor="dos-veces-eggs">2 veces</label>
+            <input value="2" id="dos-veces-eggs" onChange={handleChangeFoodEggs} type="radio" name="food-eggs" checked={false} />
+            <label htmlFor="dos-veces-eggs">2 veces</label>
+          </div>
         </form>
       );
     case "food-dairy":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconFood} alt="logo-bicicleta" />
           <h2>Alimentación</h2>
           <h3>Hoy he comido lácteos:</h3>
-          <input value="0" id="no-dairy" onChange={handleChangeFoodDairy} type="radio" name="food-dairy" checked={false} />
-          <label htmlFor="no-dairy">No</label>
+          <div className="inputs-block">
+            <input value="0" id="no-dairy" onChange={handleChangeFoodDairy} type="radio" name="food-dairy" checked={false} />
+            <label htmlFor="no-dairy">No</label>
 
-          <input value="1" id="uno-vez-dairy" onChange={handleChangeFoodDairy} type="radio" name="food-dairy" checked={false} />
-          <label htmlFor="uno-vez-dairy">1 vez</label>
+            <input value="1" id="uno-vez-dairy" onChange={handleChangeFoodDairy} type="radio" name="food-dairy" checked={false} />
+            <label htmlFor="uno-vez-dairy">1 vez</label>
 
-          <input value="2" id="dos-veces-dairy" onChange={handleChangeFoodDairy} type="radio" name="food-dairy" checked={false} />
-          <label htmlFor="dos-veces-dairy">2 veces</label>
+            <input value="2" id="dos-veces-dairy" onChange={handleChangeFoodDairy} type="radio" name="food-dairy" checked={false} />
+            <label htmlFor="dos-veces-dairy">2 veces</label>
+          </div>
         </form>
       );
     case "end-form":
       return (
-        <div>
-          <img />
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa laudantium unde quibusdam iure odio, repellat eos enim quidem soluta aliquid? Quis beatae voluptates provident culpa tempore necessitatibus laboriosam eum eaque.</p>
-          <button onClick={handleSubmitAllForm}>Aceptar</button>
-          <button>Colaborar con más proyectos</button>
+        <div className="final-form-daily">
+          <h2>¡Lo estás haciendo genial!</h2>
+          <p>Gracias a tu progreso y al de personas comprometidas con el medioambiente como tú las emisiones de {'CO2'} de tu ciudad están reduciéndose.</p>
+          <Link to="/profile"><button className="colaboration" type="button" onClick={handleSubmitAllForm}>Colabora con más proyectos</button></Link>
+          <Link to="/profile"><button className="go-profile" type="button" onClick={handleSubmitAllForm}>Volver a mi perfil</button></Link>
         </div>
       );
   }

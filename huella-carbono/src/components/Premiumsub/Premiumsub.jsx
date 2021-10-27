@@ -5,19 +5,19 @@ const Premiumsub = () => {
 
   const alert = () => {
     Swal.fire({
-    title: 'Quieres suscribirte al plan?',
-    showDenyButton: true,
-    denyButtonText: `Atras`,
-    confirmButtonText: 'Aceptar',
-  }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
-    if (result.isConfirmed) {
-      Swal.fire('Suscribed!', '', 'success')
-    } else if (result.isDenied) {
-      Swal.fire('Plan not saved', '', 'info')
-    }
-  })
-}
+      title: 'Quieres suscribirte al plan?',
+      showDenyButton: true,
+      denyButtonText: `Atras`,
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire('Suscribed!', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Plan not saved', '', 'info')
+      }
+    })
+  }
 
   return (
     <div className="premium-plan">

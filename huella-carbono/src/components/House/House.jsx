@@ -2,10 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from 'axios';
 import { useHistory } from "react-router";
 import { useStep } from "react-hooks-helper";
+import { Link } from "react-router-dom";
 
 // Context
 import userContext from "../../context/userContext";
 
+// Iconos
+import iconHouse from '../../assets/form-home.svg'
 
 const defaultData = {
   "home-house": "",
@@ -132,80 +135,92 @@ const InitialForm = () => {
   switch (step.id) {
     case "home-house":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconHouse} alt="logo-bicicleta" />
           <h2>Hogar</h2>
           <h3>¿En qué tipo de casa vives?</h3>
-          <input value="piso" id="ninguna-dairy" onChange={handleChangeHomeHouse} type="radio" name="home-house" checked={false} />
-          <label htmlFor="ninguna-dairy">Piso</label>
+          <div className="inputs-block">
+            <input value="piso" id="ninguna-dairy" onChange={handleChangeHomeHouse} type="radio" name="home-house" checked={false} />
+            <label htmlFor="ninguna-dairy">Piso</label>
 
-          <input value="casa" id="mas-tres-dairy" onChange={handleChangeHomeHouse} type="radio" name="home-house" checked={false} />
-          <label htmlFor="mas-tres-dairy">Casa</label>
+            <input value="casa" id="mas-tres-dairy" onChange={handleChangeHomeHouse} type="radio" name="home-house" checked={false} />
+            <label htmlFor="mas-tres-dairy">Casa</label>
+          </div>
         </form>
       );
     case "home-metres":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconHouse} alt="logo-bicicleta" />
           <h2>Hogar</h2>
           <h3>¿Cuántos m2 tiene tu vivienda?</h3>
-          <input value="40" id="menos-cincuenta" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
-          <label htmlFor="menos-cincuenta">Menos de 50 m2</label>
+          <div className="inputs-block">
+            <input value="40" id="menos-cincuenta" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
+            <label htmlFor="menos-cincuenta">Menos de 50 m2</label>
 
-          <input value="65" id="cincuenta-ochenta" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
-          <label htmlFor="cincuenta-ochenta">Entre 50 y 80 m2</label>
+            <input value="65" id="cincuenta-ochenta" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
+            <label htmlFor="cincuenta-ochenta">Entre 50 y 80 m2</label>
 
-          <input value="100" id="ochenta-cientoveinte" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
-          <label htmlFor="ochenta-cientoveinte">Entre 80 y 120 m2</label>
+            <input value="100" id="ochenta-cientoveinte" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
+            <label htmlFor="ochenta-cientoveinte">Entre 80 y 120 m2</label>
 
-          <input value="210" id="cientoveinte-trescientos" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
-          <label htmlFor="cientoveinte-trescientos">Entre 120 y 300 m2</label>
+            <input value="210" id="cientoveinte-trescientos" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
+            <label htmlFor="cientoveinte-trescientos">Entre 120 y 300 m2</label>
 
-          <input value="350" id="mas-trescientos-m2" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
-          <label htmlFor="mas-trescientos-m2">Mas de 300 m2</label>
+            <input value="350" id="mas-trescientos-m2" onChange={handleChangeHomeMetres} type="radio" name="home-metres" checked={false} />
+            <label htmlFor="mas-trescientos-m2">Mas de 300 m2</label>
+          </div>
         </form>
       );
     case "home-people":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconHouse} alt="logo-bicicleta" />
           <h2>Hogar</h2>
           <h3>¿cuántas personas convivís en casa?</h3>
-          <input value="1" id="uno-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
-          <label htmlFor="uno-gente">1</label>
+          <div className="inputs-block">
+            <input value="1" id="uno-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
+            <label htmlFor="uno-gente">1</label>
 
-          <input value="2" id="dos-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
-          <label htmlFor="dos-gente">2</label>
+            <input value="2" id="dos-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
+            <label htmlFor="dos-gente">2</label>
 
-          <input value="3" id="tres-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
-          <label htmlFor="tres-gente">3</label>
+            <input value="3" id="tres-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
+            <label htmlFor="tres-gente">3</label>
 
-          <input value="4" id="cuatro-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
-          <label htmlFor="cuatro-gente">4</label>
+            <input value="4" id="cuatro-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
+            <label htmlFor="cuatro-gente">4</label>
 
-          <input value="5" id="cinco-mas-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
-          <label htmlFor="cinco-mas-gente">5 o +</label>
+            <input value="5" id="cinco-mas-gente" onChange={handleChangeHomePeople} type="radio" name="home-people" checked={false} />
+            <label htmlFor="cinco-mas-gente">5 o +</label>
+          </div>
         </form>
       );
     case "home-heat":
       return (
-        <form>
+        <form className="form-block">
+          <img src={iconHouse} alt="logo-bicicleta" />
           <h2>Hogar</h2>
           <h3>¿Qué tipo de energía empleas para calentar tu hogar?</h3>
-          <input value="electrica" id="electrica-heat" onChange={handleChangeHomeHeat} type="radio" name="home-heat" checked={false} />
-          <label htmlFor="electrica-heat">Eléctrica</label>
+          <div className="inputs-block">
+            <input value="electrica" id="electrica-heat" onChange={handleChangeHomeHeat} type="radio" name="home-heat" checked={false} />
+            <label htmlFor="electrica-heat">Eléctrica</label>
 
-          <input value="gas" id="gas-heat" onChange={handleChangeHomeHeat} type="radio" name="home-heat" checked={false} />
-          <label htmlFor="gas-heat">Gas</label>
+            <input value="gas" id="gas-heat" onChange={handleChangeHomeHeat} type="radio" name="home-heat" checked={false} />
+            <label htmlFor="gas-heat">Gas</label>
 
-          <input value="gasoleo" id="gasoleo-heat" onChange={handleChangeHomeHeat} type="radio" name="home-heat" checked={false} />
-          <label htmlFor="gasoleo-heat">Gasoleo</label>
+            <input value="gasoleo" id="gasoleo-heat" onChange={handleChangeHomeHeat} type="radio" name="home-heat" checked={false} />
+            <label htmlFor="gasoleo-heat">Gasoleo</label>
+          </div>
         </form>
       );
     case "end-form":
       return (
-        <div>
-          <img />
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa laudantium unde quibusdam iure odio, repellat eos enim quidem soluta aliquid? Quis beatae voluptates provident culpa tempore necessitatibus laboriosam eum eaque.</p>
-          <button onClick={handleSubmitAllForm}>Aceptar</button>
-          <button>Colaborar con más proyectos</button>
+        <div className="final-form-daily">
+          <h2>¡Lo estás haciendo genial!</h2>
+          <p>Gracias a tu progreso y al de personas comprometidas con el medioambiente como tú las emisiones de {'CO2'} de tu ciudad están reduciéndose.</p>
+          <Link to="/profile"><button className="colaboration" type="button" onClick={handleSubmitAllForm}>Colabora con más proyectos</button></Link>
+          <Link to="/profile"><button className="go-profile" type="button" onClick={handleSubmitAllForm}>Volver a mi perfil</button></Link>
         </div>
       );
   }
@@ -217,112 +232,3 @@ const InitialForm = () => {
 }
 
 export default InitialForm;
-
-
-/*
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
-
-// Context
-import userContext from "../../context/userContext";
-
-const House = () => {
-
-  // Context
-  const { user } = useContext(userContext);
-
-  const questions = [
-    {
-      questionText: 'Pregunta de hogar 1',
-      type: 'home',
-      answerOptions: [
-        { answerText: '1', isCorrect: 6 },
-        { answerText: '2', isCorrect: 5 },
-        { answerText: '3', isCorrect: 4 },
-        { answerText: '4', isCorrect: 2 },
-      ],
-    },
-    {
-      questionText: 'Pregunta de hogar 2',
-      type: 'home',
-      answerOptions: [
-        { answerText: 'Jeff Bezos', isCorrect: 2 },
-        { answerText: 'Elon Musk', isCorrect: 6 },
-        { answerText: 'Bill Gates', isCorrect: 9 },
-        { answerText: 'Tony Stark', isCorrect: 10 },
-      ],
-    },
-    {
-      questionText: 'Pregunta de hogar 3',
-      type: 'home',
-      answerOptions: [
-        { answerText: 'Apple', isCorrect: 15 },
-        { answerText: 'Intel', isCorrect: 18 },
-        { answerText: 'Amazon', isCorrect: 20 },
-        { answerText: 'Microsoft', isCorrect: 21 },
-      ],
-    }
-  ];
-
-
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [showValue, setShowValue] = useState(false);
-  const [home, setHome] = useState(0);
-
-  // Effect
-  useEffect(() => {
-    if (showValue) {
-      axios.post('http://localhost:3001/updates/post-update', {
-        value: home,
-        type: 'home',
-        token: user
-      })
-    }
-  }, [showValue])
-
-
-  const handleAnswerOptionClick = (value, type) => {
-
-    if (type === 'home') {
-      setHome(home + value);
-    }
-
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      setShowValue(true)
-    }
-  };
-
-
-  return (
-    <div>
-      {showValue
-        ? <div className='score-section'>
-          Your CO2 kg is {home}
-        </div>
-        : (
-          <>
-            <div className='question-section'>
-              <div className='icon'>
-                ICON
-              </div>
-              <div className='question-type'>
-                <span>Alimentación, pregunta {currentQuestion + 1}</span>/{questions.length}
-              </div>
-              <div className='question-text'>{questions[currentQuestion].questionText}</div>
-            </div>
-            <div className='answer-section'>
-              {questions[currentQuestion].answerOptions.map((answerOption) => (
-                <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect, questions[currentQuestion].type)}>{answerOption.answerText}</button>
-              ))}
-            </div>
-          </>
-        )}
-    </div>
-  );
-};
-
-export default House;
-*/
