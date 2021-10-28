@@ -22,8 +22,8 @@ const infoControllers = {
 
     getInfoLastDate: async (req, res) => {
         const { token } = req.body
-        const user = jwt.verify(token, process.env.JWT)
         try {
+            const user = jwt.verify(token, process.env.JWT)
 
             const [RowDataPacket] = await user_info.getUserInfoLastDate(user.id)
 
