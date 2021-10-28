@@ -76,7 +76,7 @@ const Ranking = () => {
       async function getData() {
 
         try {
-          const { data } = await axios.post('http://localhost:3001/ranking/ranking-data', {
+          const { data } = await axios.post('/ranking/ranking-data', {
             token: user
           });
 

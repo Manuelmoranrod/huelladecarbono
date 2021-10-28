@@ -81,7 +81,7 @@ const Profile = () => {
 
     async function getData() {
       try {
-        const response = await axios.post('http://localhost:3001/info/get-info', {
+        const response = await axios.post('/info/get-info', {
           token: user
         });
         // Sacamos los porcentajes para la grafica sobre el total
