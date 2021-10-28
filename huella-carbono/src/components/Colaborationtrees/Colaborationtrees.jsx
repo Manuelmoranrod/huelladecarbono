@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router";
+
+// Context
+import userContext from "../../context/userContext";
 
 // Imagenes
 import treesColaboration from '../../assets/compensate/trees-colaboration.svg'
@@ -23,6 +26,13 @@ const style = {
 
 
 const Colaborationtrees = () => {
+
+  // Context
+  const { user } = useContext(userContext);
+
+  if (user === null) {
+    history.push('/')
+  }
 
   const history = useHistory()
 

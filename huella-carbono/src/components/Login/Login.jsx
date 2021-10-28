@@ -37,7 +37,6 @@ const Login = () => {
       sessionStorage.setItem('token', token)
       setUser(token)
     } catch (err) {
-      console.log(err.response.status);
       if (err.response.status === 401) {
         setError('apiError', { message: 'El email o contraseña son incorrectos' })
       }

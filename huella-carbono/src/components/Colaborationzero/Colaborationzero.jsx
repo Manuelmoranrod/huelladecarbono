@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+
+import userContext from "../../context/userContext";
 
 // Imagenes
 import treeLow from '../../assets/compensate/tree-low.svg'
@@ -7,8 +9,15 @@ import treeMid from '../../assets/compensate/tree-mid.svg'
 import treeHigh from '../../assets/compensate/tree-high.svg'
 
 const Colaborationzero = () => {
-
+  
   const history = useHistory()
+
+  // Context
+  const { user } = useContext(userContext);
+
+  if (user === null) {
+    history.push('/')
+  }
 
   return (
     <div className="colaboration-zero">

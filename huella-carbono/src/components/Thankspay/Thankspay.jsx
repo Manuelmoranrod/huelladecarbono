@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
+
+import userContext from "../../context/userContext";
 
 import mountain from '../../assets/compensate/zero-one.svg'
 
 const Thankspay = () => {
+
+  const history = useHistory()
+
+  // Context
+  const { user } = useContext(userContext);
+
+  if (user === null) {
+    history.push('/')
+  }
+
   return (
     <div className="thanks-pay">
       <img src={mountain} alt="montaña en isla" />

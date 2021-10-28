@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router";
+
+import userContext from "../../context/userContext";
 
 // Imagenes
 import efficienOne from '../../assets/compensate/efficient-one.svg'
@@ -25,6 +27,13 @@ const style = {
 
 const Efficient = () => {
 
+  // Context
+  const { user } = useContext(userContext);
+
+  if (user === null) {
+    history.push('/')
+  }
+
   const history = useHistory()
 
   // Mui
@@ -38,11 +47,11 @@ const Efficient = () => {
       <h1>Plan Efficient</h1>
       <p>Escoge este plan si quieres descubrir nuevas acciones con gran impacto</p>
 
-      <img src={efficienOne} alt="effione"/>
+      <img src={efficienOne} alt="effione" />
       <h2>Colabora con 1 proyecto</h2>
       <p>Hemos seleccionado este proyecto especialmente para ti.</p>
 
-      <img src={efficienTwo} alt="effitwo"/>
+      <img src={efficienTwo} alt="effitwo" />
       <h2>Colabora con 1 proyecto</h2>
       <p>Hemos seleccionado este proyecto especialmente para ti.</p>
 
