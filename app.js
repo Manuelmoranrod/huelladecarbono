@@ -3,20 +3,25 @@ const cors = require('cors')
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
-const helmet = require("helmet");
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+const corsOptions = {
+    origin: [
+        "https://huella-tripulaciones.herokuapp.com/"
+    ]
+};
 
 // Permisos de Cors
-app.use(cors())
+app.use(cors(corsOptions))
 
-// Helmet
-app.use(helmet());
 
 // Importación routes
 const authRoutes = require('./routes/auth.routes')
 const infoRoutes = require('./routes/info.routes')
 const updatesRoutes = require('./routes/updates.routes')
 const rankingRoutes = require('./routes/ranking.routes')
-
 
 // morgan
 app.use(morgan('dev'));
@@ -38,10 +43,10 @@ app.use('/updates/', updatesRoutes)
 // ranking
 app.use('/ranking/', rankingRoutes)
 
-
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const port = process.env.PORT || 3001
 
-app.listen(port, () => {
-    console.log(`http://localhost:3001`)
-})
+app.listen(port)

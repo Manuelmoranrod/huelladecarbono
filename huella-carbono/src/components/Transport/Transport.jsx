@@ -159,7 +159,7 @@ const Transport = () => {
       finalNum = Number(defaultData["transport-vehicle"]) * Number(defaultData["transport-km"])
     }
 
-    axios.post('http://localhost:3001/updates/post-update', {
+    axios.post('/updates/post-update', {
       type: 'transport',
       value: finalNum,
       token: user

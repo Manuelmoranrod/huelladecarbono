@@ -20,7 +20,7 @@ const FirstLoginGoogle = () => {
 
   const onSubmit = async (data) => {
 
-    const response = await axios.post('http://localhost:3001/auth/update-login-google', {
+    const response = await axios.post('/auth/update-login-google', {
       username: data.username,
       city: data.city,
       token: user,

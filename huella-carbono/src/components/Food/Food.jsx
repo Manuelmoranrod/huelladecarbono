@@ -41,7 +41,7 @@ const Food = () => {
       async function fetchData() {
 
         try {
-          const { data } = await axios.get('http://localhost:3001/updates/get-update-food')
+          const { data } = await axios.get('/updates/get-update-food')
           setDataTransport(data)
           setLoader(!loader)
         } catch (err) {
@@ -132,7 +132,7 @@ const Food = () => {
     }
 
 
-    axios.post('http://localhost:3001/updates/post-update', {
+    axios.post('/updates/post-update', {
       type: 'food',
       value: totalNum,
       token: user
