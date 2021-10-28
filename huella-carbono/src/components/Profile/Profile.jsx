@@ -172,11 +172,11 @@ const Profile = () => {
           <img src={firstPlan} alt="plan" />
         </div>
 
-        <Link to="/myplan"><button className="button-compensar">Ver todos los planes</button></Link>
+        <Link to="/compensate"><button className="button-compensar">Ver todos los planes</button></Link>
 
       </div>
     </div>
-  );
+  ); 
 };
 
 export default Profile;

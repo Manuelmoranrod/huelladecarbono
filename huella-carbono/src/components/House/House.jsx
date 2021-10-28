@@ -32,15 +32,16 @@ const InitialForm = () => {
   //Context
   const { user } = useContext(userContext);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (user === null) {
       history.push('/')
     }
-
+    async function fetchData(){
     const { data } = await axios.get('http://localhost:3001/updates/get-update-home')
 
-    console.log(data);
     setDataTransport(data)
+    }
+    fetchData();
   }, [])
 
   // State data back
@@ -91,7 +92,7 @@ const InitialForm = () => {
     let finalNum = 0
 
     if (defaultData["home-house"] === 'piso') {
-      console.log('piso');
+      
       if (defaultData["home-heat"] === "electrica") {
         finalNum = (Number(defaultData["home-metres"]) * dataTransport.electricFlat) / Number(defaultData["home-people"])
       } else if (defaultData["home-heat"] === "gas") {
@@ -103,7 +104,7 @@ const InitialForm = () => {
     }
 
     if (defaultData["home-house"] === 'casa') {
-      console.log('casa');
+      
       if (defaultData["home-heat"] === "electrica") {
         finalNum = (Number(defaultData["home-metres"]) * dataTransport.electricHouse) / Number(defaultData["home-people"])
       } else if (defaultData["home-heat"] === "gas") {
@@ -114,8 +115,6 @@ const InitialForm = () => {
 
     }
 
-    console.log(finalNum);
-
     axios.post('http://localhost:3001/updates/post-update', {
       type: 'home',
       value: finalNum,
@@ -123,14 +122,10 @@ const InitialForm = () => {
     })
   }
 
-
-
   const { step, navigation } = useStep({
     steps,
     initialStep: 0,
   });
-
-  console.log(defaultData);
 
   switch (step.id) {
     case "home-house":

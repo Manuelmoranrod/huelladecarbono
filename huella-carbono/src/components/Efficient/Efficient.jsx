@@ -38,11 +38,11 @@ const Efficient = () => {
       <h1>Plan Efficient</h1>
       <p>Escoge este plan si quieres descubrir nuevas acciones con gran impacto</p>
 
-      <img src={efficienOne} />
+      <img src={efficienOne} alt="effione"/>
       <h2>Colabora con 1 proyecto</h2>
       <p>Hemos seleccionado este proyecto especialmente para ti.</p>
 
-      <img src={efficienTwo} />
+      <img src={efficienTwo} alt="effitwo"/>
       <h2>Colabora con 1 proyecto</h2>
       <p>Hemos seleccionado este proyecto especialmente para ti.</p>
 

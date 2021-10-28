@@ -119,7 +119,7 @@ const Ranking = () => {
     }
     getData()
   }, [])
-   console.log("estado", datainfo);
+  
   return (
     <>
     {user ? 

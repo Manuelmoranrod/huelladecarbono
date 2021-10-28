@@ -1,7 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
 import { useHistory } from "react-router";
-
 
 // Imagenes
 import treesColaboration from '../../assets/compensate/trees-colaboration.svg'

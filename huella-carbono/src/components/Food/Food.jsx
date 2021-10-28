@@ -33,15 +33,17 @@ const Food = () => {
   //Context
   const { user } = useContext(userContext);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (user === null) {
       history.push('/')
     }
+    async function fetchData() {
 
-    const { data } = await axios.get('http://localhost:3001/updates/get-update-food')
+      const { data } = await axios.get('http://localhost:3001/updates/get-update-food')
 
-    console.log(data);
-    setDataTransport(data)
+      setDataTransport(data)
+    }
+    fetchData();
   }, [])
 
   // State data back
@@ -103,35 +105,26 @@ const Food = () => {
 
   const handleSubmitAllForm = () => {
 
-    console.log(defaultData);
-
-
     let totalNum = 0
 
     if (Number(defaultData["food-meet"]) > 0) {
-      console.log('entra meet');
       totalNum += Number(defaultData["food-meet"]) * Number(defaultData["food-meet-type"]);
-      console.log(totalNum);
     }
 
     if (Number(defaultData["food-fish"]) > 0) {
-      console.log('entra fish');
       totalNum += Number(defaultData["food-fish"]) * dataTransport.fish;
-      console.log(totalNum);
     }
 
     if (Number(defaultData["food-eggs"]) > 0) {
       console.log('entra eggs');
       totalNum += Number(defaultData["food-eggs"]) * dataTransport.eggs;
-      console.log(totalNum);
     }
 
     if (Number(defaultData["food-dairy"]) > 0) {
       console.log('entra dairy');
       totalNum += Number(defaultData["food-dairy"]) * dataTransport.dairy;
-      console.log(totalNum);
+      
     }
-
 
     axios.post('http://localhost:3001/updates/post-update', {
       type: 'food',
@@ -140,14 +133,11 @@ const Food = () => {
     })
   }
 
-
-
   const { step, navigation } = useStep({
     steps,
     initialStep: 0,
   });
 
-  console.log(defaultData);
 
   switch (step.id) {
     case "food-meet":
@@ -261,113 +251,3 @@ const Food = () => {
 }
 
 export default Food;
-
-
-
-/*
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
-
-// Context
-import userContext from "../../context/userContext";
-
-const Food = () => {
-
-  // Context
-  const { user } = useContext(userContext);
-
-  const questions = [
-    {
-      questionText: 'Pregunta de comida 1',
-      type: 'food',
-      answerOptions: [
-        { answerText: '1', isCorrect: 6 },
-        { answerText: '2', isCorrect: 5 },
-        { answerText: '3', isCorrect: 4 },
-        { answerText: '4', isCorrect: 2 },
-      ],
-    },
-    {
-      questionText: 'Pregunta de comida 2',
-      type: 'food',
-      answerOptions: [
-        { answerText: 'Jeff Bezos', isCorrect: 2 },
-        { answerText: 'Elon Musk', isCorrect: 6 },
-        { answerText: 'Bill Gates', isCorrect: 9 },
-        { answerText: 'Tony Stark', isCorrect: 10 },
-      ],
-    },
-    {
-      questionText: 'Pregunta de comida 3',
-      type: 'food',
-      answerOptions: [
-        { answerText: 'Apple', isCorrect: 15 },
-        { answerText: 'Intel', isCorrect: 18 },
-        { answerText: 'Amazon', isCorrect: 20 },
-        { answerText: 'Microsoft', isCorrect: 21 },
-      ],
-    }
-  ];
-
-
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [showValue, setShowValue] = useState(false);
-  const [food, setFood] = useState(0);
-
-  // Effect
-  useEffect(() => {
-    if (showValue) {
-      axios.post('http://localhost:3001/updates/post-update', {
-        value: food,
-        type: 'food',
-        token: user
-      })
-    }
-  }, [showValue])
-
-
-  const handleAnswerOptionClick = (value, type) => {
-
-    if (type === 'food') {
-      setFood(food + value);
-    }
-
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      setShowValue(true)
-    }
-  };
-
-
-  return (
-    <div>
-      {showValue
-        ? <div className='score-section'>
-          Your CO2 kg is {food}
-        </div>
-        : (
-          <>
-            <div className='question-section'>
-              <div className='icon'>
-                ICON
-              </div>
-              <div className='question-type'>
-                <span>Alimentación, pregunta {currentQuestion + 1}</span>/{questions.length}
-              </div>
-              <div className='question-text'>{questions[currentQuestion].questionText}</div>
-            </div>
-            <div className='answer-section'>
-              {questions[currentQuestion].answerOptions.map((answerOption) => (
-                <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect, questions[currentQuestion].type)}>{answerOption.answerText}</button>
-              ))}
-            </div>
-          </>
-        )}
-    </div>
-  );
-};
-
-export default Food;
-*/
