@@ -39,7 +39,7 @@ const InitialForm = () => {
     }
     async function fetchData() {
       try {
-        const { data } = await axios.get('/updates/get-update-home')
+        const { data } = await axios.get('http://localhost:3001/updates/get-update-home')
         setDataTransport(data)
       } catch (err) {
         console.log(err);
@@ -122,7 +122,7 @@ const InitialForm = () => {
     }
 
 
-    axios.post('/updates/post-update', {
+    axios.post('http://localhost:3001/updates/post-update', {
       type: 'home',
       value: finalNum,
       token: user
