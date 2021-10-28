@@ -63,7 +63,7 @@ const InitialForm = () => {
 		}
 		async function fetchData() {
 			try {
-				const { data } = await axios.get('http://localhost:3001/updates/get-update-initial-form')
+				const { data } = await axios.get('/updates/get-update-initial-form')
 				setDataAllTables(data)
 			} catch (err) {
 				console.log(err);
