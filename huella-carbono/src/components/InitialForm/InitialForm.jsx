@@ -56,15 +56,17 @@ const InitialForm = () => {
 	//Context
 	const { user } = useContext(userContext);
 
-	useEffect(async () => {
+	useEffect(() => {
 		if (user === null) {
 			history.push('/')
 		}
+		async function fetchData() {
 
-		const { data } = await axios.get('http://localhost:3001/updates/get-update-initial-form')
+			const { data } = await axios.get('http://localhost:3001/updates/get-update-initial-form')
 
-		console.log('data', data);
-		setDataAllTables(data)
+			setDataAllTables(data)
+		}
+		fetchData();
 		setLoader(!loader)
 	}, [])
 
@@ -367,9 +369,9 @@ const InitialForm = () => {
 			if (defaultData["home-heat"] === "electrica") {
 				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.electricHouse) / Number(defaultData["home-people"])) * 365) / 52
 			} else if (defaultData["home-heat"] === "gas") {
-				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.gasHouse) / Number(defaultData["home-people"])) * 365 ) / 52
+				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.gasHouse) / Number(defaultData["home-people"])) * 365) / 52
 			} else if (defaultData["home-heat"] === "gasoleo") {
-				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.fuelHouse) / Number(defaultData["home-people"])) * 365 ) /52
+				totalHome = (((Number(defaultData["home-metres"]) * dataAllTables.numbersHome.fuelHouse) / Number(defaultData["home-people"])) * 365) / 52
 			}
 
 		}
@@ -377,12 +379,12 @@ const InitialForm = () => {
 		console.log('home', totalHome);
 
 
-		
+
 		// House
 		totalTransport += 33;
 		totalFood += 33;
 		totalHome += 33;
-		
+
 		console.log('final', (totalHome + totalTransport + totalFood));
 
 		axios.post('http://localhost:3001/info/post-info', {

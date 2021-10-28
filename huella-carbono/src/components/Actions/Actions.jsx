@@ -43,8 +43,8 @@ const Actions = () => {
     <div className="actions">
 
       <div className="conteiner-type-action">
-        <img src={iconTransport} />
-        <img src={actionOne} />
+        <img src={iconTransport} alt="itrans"/>
+        <img src={actionOne} alt="aone"/>
 
         <h2>Acción 1</h2>
         <h3>Gastar menos combustible</h3>
@@ -65,8 +65,8 @@ const Actions = () => {
       </div>
 
       <div className="conteiner-type-action">
-        <img src={iconFood} />
-        <img src={actionOne} />
+        <img src={iconFood} alt="ifood"/>
+        <img src={actionTwo} alt="atwo" />
 
         <h2>Acción 2</h2>
         <h3>Reducir consumo carne</h3>
@@ -87,8 +87,8 @@ const Actions = () => {
       </div>
 
       <div className="conteiner-type-action">
-        <img src={iconHome} />
-        <img src={actionOne} />
+        <img src={iconHome} alt="ihome"/>
+        <img src={actionThree} alt="athree"/>
 
         <h2>Acción 3</h2>
         <h3>Métodos alternativos a la calefacción</h3>

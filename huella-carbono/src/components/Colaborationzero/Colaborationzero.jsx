@@ -31,7 +31,7 @@ const Colaborationzero = () => {
 
       <div>
         <img src={treeMid} alt="arboles" />
-        <span>2,5€</span>
+        <span>5€</span>
 
 
         <h3>Planta árboles en Madagascar</h3>
@@ -43,7 +43,7 @@ const Colaborationzero = () => {
 
       <div>
         <img src={treeHigh} alt="arboles" />
-        <span>2,5€</span>
+        <span>10€</span>
 
 
         <h3>Planta árboles en Madagascar</h3>

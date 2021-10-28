@@ -89,6 +89,7 @@ const Ranking = () => {
     }
 
   }, [])
+  
 
   const conditionalRowStyles = [
     {
@@ -102,8 +103,8 @@ const Ranking = () => {
       },
     },
   ];
-
-
+  
+  
   return (
     <div className="ranking-conteiner">
       <div className="ranking">

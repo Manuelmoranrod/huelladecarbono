@@ -45,14 +45,10 @@ const Register = () => {
         sessionStorage.setItem('token', token)
         setUser(token)
 
-        console.log('registro con exito');
-
         history.push('/initial-form')
-        
       }
 
     } catch (err) {
-      console.log(err.response.status);
       if (err.response.status === 400) {
         setError('apiError', { message: 'El email que intentas registrar ya esta en uso' })
       }

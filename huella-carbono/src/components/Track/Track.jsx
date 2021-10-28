@@ -14,9 +14,9 @@ const Track = () => {
         <p>Que has mejorado hoy?</p>
 
         <div className="conteiner-buttons">
-          <Link to="/form-transport"><div className="conteiner-icon"><img src={transport} /></div></Link>
-          <Link to="/form-food"><div className="conteiner-icon"><img src={food} /></div></Link>
-          <Link to="/form-home"><div className="conteiner-icon"><img src={hogar} /></div></Link>
+          <Link to="/form-transport"><div className="conteiner-icon"><img src={transport} alt="transport"/></div></Link>
+          <Link to="/form-food"><div className="conteiner-icon"><img src={food} alt="food"/></div></Link>
+          <Link to="/form-home"><div className="conteiner-icon"><img src={hogar} alt="hogar"/></div></Link>
         </div>
       </div>
     </div>

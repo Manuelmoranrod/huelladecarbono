@@ -42,8 +42,6 @@ const Login = () => {
         setError('apiError', { message: 'El email o contraseña son incorrectos' })
       }
     }
-
-
   }
 
 
