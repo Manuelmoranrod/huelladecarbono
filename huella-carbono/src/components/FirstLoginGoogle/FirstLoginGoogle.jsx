@@ -12,7 +12,7 @@ const FirstLoginGoogle = () => {
   const history = useHistory()
 
   // Formik
-  const { register, formState: { errors }, handleSubmit, setError } = useForm();
+  const { register, formState: { errors }, handleSubmit } = useForm();
 
   // Context
   const { user } = useContext(userContext);
@@ -27,7 +27,7 @@ const FirstLoginGoogle = () => {
     })
 
     if(response.status === 200){
-      history.push('/initial-form')
+      history.push('/welcome')
     }else{
       alert("error")
     }

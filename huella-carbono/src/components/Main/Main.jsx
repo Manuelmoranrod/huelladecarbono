@@ -23,6 +23,7 @@ import Colaborationzero from "../Colaborationzero";
 import Plantzero from "../Plantzero";
 import Payment from "../Payment";
 import Thankspay from "../Thankspay";
+import Welcome from "../Welcome";
 
 
 const Main = () => {
@@ -51,6 +52,7 @@ const Main = () => {
         <Route path="/firstlogingoogle" component={FirstLoginGoogle} />
         <Route path="/payment" component={Payment} />
         <Route path="/thanks-pay" component={Thankspay} />
+        <Route path="/welcome" component={Welcome} />
         <Route component={Error} />
       </Switch>
     </div>

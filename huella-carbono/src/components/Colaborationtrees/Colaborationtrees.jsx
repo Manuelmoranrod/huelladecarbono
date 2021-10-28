@@ -27,14 +27,14 @@ const style = {
 
 const Colaborationtrees = () => {
 
+  const history = useHistory()
+
   // Context
   const { user } = useContext(userContext);
 
   if (user === null) {
     history.push('/')
   }
-
-  const history = useHistory()
 
   // Mui
   const [open, setOpen] = React.useState(false);

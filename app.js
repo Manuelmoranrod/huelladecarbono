@@ -3,9 +3,13 @@ const cors = require('cors')
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
+const helmet = require("helmet");
 
 // Permisos de Cors
 app.use(cors())
+
+// Helmet
+app.use(helmet());
 
 // Importación routes
 const authRoutes = require('./routes/auth.routes')

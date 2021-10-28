@@ -27,14 +27,14 @@ const style = {
 
 const Efficient = () => {
 
+  const history = useHistory()
+
   // Context
   const { user } = useContext(userContext);
 
   if (user === null) {
     history.push('/')
   }
-
-  const history = useHistory()
 
   // Mui
   const [open, setOpen] = React.useState(false);
@@ -52,8 +52,8 @@ const Efficient = () => {
       <p>Hemos seleccionado este proyecto especialmente para ti.</p>
 
       <img src={efficienTwo} alt="effitwo" />
-      <h2>Colabora con 1 proyecto</h2>
-      <p>Hemos seleccionado este proyecto especialmente para ti.</p>
+      <h2>Realiza 3 acciones</h2>
+      <p>Paso a paso, semana a semana. Así es como logramos el cambio.</p>
 
       <button onClick={handleOpen}>Aceptar</button>
       <Modal

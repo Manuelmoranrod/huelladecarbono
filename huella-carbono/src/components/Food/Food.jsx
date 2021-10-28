@@ -37,18 +37,19 @@ const Food = () => {
   useEffect(() => {
     if (user === null) {
       history.push('/')
-    }
-    async function fetchData() {
+    } else {
+      async function fetchData() {
 
-      try {
-        const { data } = await axios.get('http://localhost:3001/updates/get-update-food')
-        setDataTransport(data)
-      } catch (err) {
-        console.log(err);
+        try {
+          const { data } = await axios.get('http://localhost:3001/updates/get-update-food')
+          setDataTransport(data)
+          setLoader(!loader)
+        } catch (err) {
+          console.log(err);
+        }
       }
+      fetchData();
     }
-    fetchData();
-    setLoader(!loader)
   }, [])
 
   // State data back
@@ -130,7 +131,6 @@ const Food = () => {
 
     }
 
-    console.log(totalNum);
 
     axios.post('http://localhost:3001/updates/post-update', {
       type: 'food',

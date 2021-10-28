@@ -63,7 +63,7 @@ const Ranking = () => {
   const history = useHistory()
 
   // Context
-  const { user, setUser } = useContext(userContext);
+  const { user } = useContext(userContext);
   const [datainfo, setData] = useState({});
   const [city, setCity] = useState(false)
 

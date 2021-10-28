@@ -11,14 +11,14 @@ import zero from '../../assets/compensate/zero.svg'
 
 const Compensate = () => {
 
+  const history = useHistory()
+
   // Context
   const { user } = useContext(userContext);
 
   if (user === null) {
     history.push('/')
   }
-
-  const history = useHistory()
 
   return (
     <div className="compensate">

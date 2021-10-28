@@ -4,7 +4,6 @@ import Chart from "react-apexcharts";
 import { Link, useHistory } from "react-router-dom";
 
 //Mui
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -124,7 +123,7 @@ const Profile = () => {
     <div className="profile">
       <button className="button-engranaje" onClick={handleClick}>
 
-        <img src={iconEngranaje} />
+        <img src={iconEngranaje} alt="icono engranaje" />
       </button>
       <Menu
         id="basic-menu"

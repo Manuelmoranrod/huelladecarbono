@@ -21,7 +21,7 @@ const Thanks = () => {
 
   return (
     <div className="thanks">
-      <img src={thanks} />
+      <img src={thanks} alt="imagen agradecimiento"/>
       <h2>¡Gracias!</h2>
       <p>Te has suscrito con éxito al plan y a partir de ahora tus acciones contribuirán a mejorar tu posición en el ranking.</p>
       <button onClick={() => history.push('/myplan')}>Aceptar</button>

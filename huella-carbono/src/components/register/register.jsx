@@ -44,7 +44,7 @@ const Register = () => {
         sessionStorage.setItem('token', token)
         setUser(token)
 
-        history.push('/initial-form')
+        history.push('/welcome')
       }
 
     } catch (err) {
