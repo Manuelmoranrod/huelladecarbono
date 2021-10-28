@@ -376,7 +376,7 @@ const InitialForm = () => {
 		totalHome += 33;
 
 
-		axios.post('http://localhost:3001/info/post-info', {
+		axios.post('/info/post-info', {
 			transport: totalTransport,
 			food: totalFood,
 			home: totalHome,
