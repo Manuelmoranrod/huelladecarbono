@@ -16,7 +16,6 @@ const corsOptions = {
 // Permisos de Cors
 app.use(cors(corsOptions))
 
-
 // Importación routes
 const authRoutes = require('./routes/auth.routes')
 const infoRoutes = require('./routes/info.routes')
