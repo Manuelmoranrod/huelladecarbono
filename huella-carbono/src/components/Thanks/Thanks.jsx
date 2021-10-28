@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
+
+import userContext from "../../context/userContext";
 
 // Image
 import thanks from '../../assets/compensate/thanks.svg'
@@ -9,6 +11,13 @@ import thanks from '../../assets/compensate/thanks.svg'
 const Thanks = () => {
 
   const history = useHistory()
+
+  // Context
+  const { user } = useContext(userContext);
+
+  if (user === null) {
+    history.push('/')
+  }
 
   return (
     <div className="thanks">

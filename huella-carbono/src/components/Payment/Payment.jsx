@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from 'react-router-dom'
+
+import userContext from "../../context/userContext";
 
 // Imagenes
 import payMethod from '../../assets/compensate/pay_method.png'
@@ -25,6 +27,13 @@ const style = {
 const Payment = () => {
 
   const history = useHistory()
+
+  // Context
+  const { user } = useContext(userContext);
+
+  if (user === null) {
+    history.push('/')
+  }
 
   // Mui
   const [open, setOpen] = React.useState(false);

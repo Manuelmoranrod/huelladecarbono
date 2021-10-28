@@ -3,7 +3,6 @@ import { Redirect, Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import LoginGoogle from "../LoginGoogle";
 import { useForm } from "react-hook-form";
-import InitialForm from "../InitialForm"
 
 // Mui
 import VisibilityIcon from '@mui/icons-material/Visibility';

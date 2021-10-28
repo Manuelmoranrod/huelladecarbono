@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from 'react-router-dom'
+
+import userContext from "../../context/userContext";
 
 // images
 import plantZero from '../../assets/compensate/plant-zero.svg'
@@ -7,6 +9,13 @@ import plantZero from '../../assets/compensate/plant-zero.svg'
 const Plantzero = () => {
 
   const history = useHistory()
+
+  // Context
+  const { user } = useContext(userContext);
+
+  if (user === null) {
+    history.push('/')
+  }
 
   return (
     <div className="plant-zero">
