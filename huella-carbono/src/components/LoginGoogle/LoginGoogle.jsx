@@ -22,7 +22,7 @@ const LoginGoogle = () => {
     }
 
     try {
-      const response = await axios.post('/auth/login-google', objUser)
+      const response = await axios.post('http://localhost:3001/auth/login-google', objUser)
 
       const token = response.data.token
       const firstTime = response.data.firstTime
