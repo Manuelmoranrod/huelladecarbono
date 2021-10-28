@@ -11,6 +11,9 @@ app.use(cors())
 // Helmet
 app.use(helmet());
 
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 // Importación routes
 const authRoutes = require('./routes/auth.routes')
 const infoRoutes = require('./routes/info.routes')
