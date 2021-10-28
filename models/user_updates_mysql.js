@@ -9,11 +9,10 @@ const user_updates = {
                 // console.log(date);
                 conexionSQL.query('INSERT INTO USER_UPDATES (TYPE, VALUE, USER_ID, DATE) VALUES (?,?,?,?)', [type, value, idUser, date], function (err, results, fields) {
                     if (err) return reject(err);
-                    console.log(results);
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             }
         })
     },
@@ -29,11 +28,10 @@ const user_updates = {
                 AND USER_ID=? AND TYPE=?
                 `, [userId, type], function (err, results, fields) {
                     if (err) return reject(err);
-                    console.log(results);
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             }
         })
     },
@@ -42,7 +40,6 @@ const user_updates = {
         return new Promise(function (resolve, reject) {
             try {
                 const date = new Date()
-                // console.log(date);
                 conexionSQL.query(`
                 CREATE TABLE USER_UPDATES (
                     UPDATE_ID int NOT NULL AUTO_INCREMENT,
@@ -55,11 +52,11 @@ const user_updates = {
                     )
                 `, function (err, results, fields) {
                     if (err) return reject(err);
-                    console.log(results);
+                    
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             }
         })
     },
@@ -68,14 +65,14 @@ const user_updates = {
         return new Promise(function (resolve, reject) {
             try {
                 const date = new Date()
-                // console.log(date);
+                
                 conexionSQL.query('SELECT * FROM TRANSPORT', function (err, results, fields) {
                     if (err) return reject(err);
-                    // console.log(results);
+                    
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             }
         })
     },
@@ -84,14 +81,14 @@ const user_updates = {
         return new Promise(function (resolve, reject) {
             try {
                 const date = new Date()
-                // console.log(date);
+                
                 conexionSQL.query('SELECT * FROM FOOD', function (err, results, fields) {
                     if (err) return reject(err);
-                    // console.log(results);
+                    
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             }
         })
     },
@@ -100,24 +97,19 @@ const user_updates = {
         return new Promise(function (resolve, reject) {
             try {
                 const date = new Date()
-                // console.log(date);
+               
                 conexionSQL.query('SELECT * FROM HOME', function (err, results, fields) {
                     if (err) return reject(err);
-                    // console.log(results);
+                    
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             }
         })
     },
 
 }
-
-// user_updates.createUserUpdate()
-// user_updates.setDataInUserUpdate()
-// user_updates.getDataInUserUpdateLastMonthFromType()
-// user_updates.getDataFromTransport()
 
 
 module.exports = user_updates

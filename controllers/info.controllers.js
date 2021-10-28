@@ -6,44 +6,42 @@ const jwt = require('jsonwebtoken')
 const infoControllers = {
 
     postInfo: async (req, res) => {
-        const {transport, food, home, token} = req.body
+        const { transport, food, home, token } = req.body
 
-        try{
+        try {
             const user = jwt.verify(token, process.env.JWT)
-            
+
             const newInfo = await user_info.setDataInUserInfo(transport, food, home, user.id)
 
-            res.status(200).send({message: 'Ok'})
-        } catch(err){
-            res.status(400).send({message: err})
-            console.log('fixed');
-        } 
+            res.status(200).send({ message: 'Ok' })
+        } catch (err) {
+            res.status(400).send({ message: err })
+
+        }
     },
 
     getInfoLastDate: async (req, res) => {
         const { token } = req.body
-
-        console.log('Este es para conseguir la ultima entrada de info de un usuario');
-        console.log(token);
-
         const user = jwt.verify(token, process.env.JWT)
+        try {
 
-        console.log(user);
+            const [RowDataPacket] = await user_info.getUserInfoLastDate(user.id)
 
-        const [RowDataPacket] = await user_info.getUserInfoLastDate(user.id)
+            const { INFO_ID, TRANSPORT, FOOD, HOME } = RowDataPacket
 
-        const {INFO_ID, TRANSPORT, FOOD, HOME} = RowDataPacket
+            const totalKg = TRANSPORT + FOOD + HOME;
 
-        const totalKg = TRANSPORT + FOOD + HOME;
+            res.status(200).send({
+                totalKg,
+                food: FOOD,
+                transport: TRANSPORT,
+                home: HOME,
+                alias: user.username
+            })
+        } catch (err) {
+            res.status(400).send({ message: err })
 
-        res.status(200).send({
-            totalKg,
-            food: FOOD,
-            transport: TRANSPORT,
-            home: HOME,
-            alias: user.username
-        })
-        console.log(RowDataPacket);
+        }
     },
 }
 

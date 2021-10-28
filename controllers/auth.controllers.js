@@ -69,50 +69,53 @@ const authControllers = {
     postLoginGoogle: async (req, res) => {
         const { password, email } = req.body
 
+        try {
         let user = await users.getOnlyOneUser(email)
+            if (user.length !== 0) {
+                const RowDataPacket = user[0]
 
-        if (user.length !== 0) {
-            const RowDataPacket = user[0]
+                const userForToken = {
+                    id: RowDataPacket.ID,
+                    username: RowDataPacket.USER_NAME,
+                    city: RowDataPacket.CITY,
+                }
 
-            const userForToken = {
-                id: RowDataPacket.ID,
-                username: RowDataPacket.USER_NAME,
-                city: RowDataPacket.CITY,
+                const token = jwt.sign(userForToken, process.env.JWT, {
+                    expiresIn: '7d'
+                })
+
+                res.send({
+                    firstTime: false,
+                    token
+                })
+            } else {
+                const passwordHash = CryptoJS.HmacSHA256(password, process.env.SECRET_SHA256).toString()
+
+                const newUser = await users.createUserGoogle(email, passwordHash)
+
+                user = await users.getOnlyOneUser(email)
+
+                const RowDataPacket = user[0]
+
+                const userForToken = {
+                    id: RowDataPacket.ID,
+                    username: RowDataPacket.USER_NAME,
+                    city: RowDataPacket.CITY,
+                }
+
+                const token = jwt.sign(userForToken, process.env.JWT, {
+                    expiresIn: '7d'
+                })
+
+                res.send({
+                    firstTime: true,
+                    token
+                })
+
+                res.status(200).send({ message: 'OK' })
             }
-
-            const token = jwt.sign(userForToken, process.env.JWT, {
-                expiresIn: '7d'
-            })
-
-            res.send({
-                firstTime: false,
-                token
-            })
-        } else {
-            const passwordHash = CryptoJS.HmacSHA256(password, process.env.SECRET_SHA256).toString()
-
-            const newUser = await users.createUserGoogle(email, passwordHash)
-
-            user = await users.getOnlyOneUser(email)
-
-            const RowDataPacket = user[0]
-
-            const userForToken = {
-                id: RowDataPacket.ID,
-                username: RowDataPacket.USER_NAME,
-                city: RowDataPacket.CITY,
-            }
-
-            const token = jwt.sign(userForToken, process.env.JWT, {
-                expiresIn: '7d'
-            })
-
-            res.send({
-                firstTime: true,
-                token
-            })
-
-            res.status(200)
+        } catch (err) {
+            res.status(400).send({ message: `Error: ${err}` })
         }
     },
 
@@ -122,13 +125,12 @@ const authControllers = {
 
         const user = jwt.verify(token, process.env.JWT)
 
-        try{
+        try {
             const updateUser = await users.updateUserGoogle(user.id, username, city)
-            
-            res.status(200).send({message: 'OK'})
-        } catch(err){
-            console.log(err);
-            res.status(400).send({message: `Error: ${err}`})
+
+            res.status(200).send({ message: 'OK' })
+        } catch (err) {
+            res.status(400).send({ message: `Error: ${err}` })
         }
     },
 
