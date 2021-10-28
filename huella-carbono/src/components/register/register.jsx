@@ -30,7 +30,7 @@ const Register = () => {
     const { username, city, email, password } = data
 
     try {
-      const response = await axios.post('/auth/register', {
+      const response = await axios.post('http://localhost:3001/auth/register', {
         username,
         city,
         email,
