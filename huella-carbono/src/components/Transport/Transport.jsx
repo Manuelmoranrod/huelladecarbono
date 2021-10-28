@@ -41,7 +41,7 @@ const Transport = () => {
     }
     async function getData() {
       try {
-        const { data } = await axios.get('http://localhost:3001/updates/get-update-transport')
+        const { data } = await axios.get('/updates/get-update-transport')
         setDataTransport(data)
       } catch (err) {
         console.log(err);
