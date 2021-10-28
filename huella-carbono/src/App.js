@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Header from './components/Header';
 import Main from './components/Main';
 import Navbar from './components/Navbar';
 import './styles/styles.scss'
@@ -26,9 +25,12 @@ function App() {
     <div className="App">
       <userContext.Provider value={{ user, setUser }}>
         <BrowserRouter>
-          {/* <Header /> */}
           <Main />
-          <Navbar />
+          {
+            user
+            ? <Navbar /> 
+            : null
+          }
         </BrowserRouter>
       </userContext.Provider>
     </div>

@@ -1,0 +1,63 @@
+.carousel {
+    .logo{
+        margin-top: 213px;
+        width:230px;
+        height: 128px;
+    }
+
+    .lema {
+        margin-top: 120px;
+        color: $dark;
+        .p{
+            font-size: 18px;
+        }
+    }
+
+    .button-verde {
+        margin-top: 52px;
+        background: #80AE09;
+        border-radius: 20px;
+        border: none;
+        width: 253px;
+        height: 48px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+        color: $primario-light;
+        margin-bottom: 18px;
+    }
+    
+    .button-blanco {
+        margin-top: 24px;
+        color: $primario;
+        background-color: transparent;
+        border-radius: 20px;
+        border-color: $primario;
+        width: 253px;
+        height: 48px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+        
+    }
+
+    .button-borde {
+        margin-top: 24px;
+        color: $primario;
+        background-color: transparent;
+        border-radius: 20px;
+        border: none;
+        width: 253px;
+        height: 48px;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+        
+    }
+}

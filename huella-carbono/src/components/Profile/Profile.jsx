@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import Chart from "react-apexcharts";
-import { Redirect, Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 //Mui
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -12,8 +11,9 @@ import MenuItem from '@mui/material/MenuItem';
 import userContext from "../../context/userContext";
 
 // Imagenes
-import firstPlan from '../../assets/plan-first-profile.png'
-import iconEngranaje from '../../assets/engranaje-icon.svg'
+import firstPlan from '../../assets/plan-first-profile.png';
+import iconEngranaje from '../../assets/engranaje-icon.svg';
+
 
 const options = {
   chart: {
@@ -80,19 +80,24 @@ const Profile = () => {
     }
 
     async function getData() {
-      const response = await axios.post('http://localhost:3001/info/get-info', {
-        token: user
-      });
-      // Sacamos los porcentajes para la grafica sobre el total
-      const calcFood = (response.data.food * 100) / response.data.totalKg
-      const calcTransport = (response.data.transport * 100) / response.data.totalKg
-      const calcHome = (response.data.home * 100) / response.data.totalKg
+      try {
+        const response = await axios.post('/info/get-info', {
+          token: user
+        });
+        // Sacamos los porcentajes para la grafica sobre el total
+        const calcFood = (response.data.food * 100) / response.data.totalKg
+        const calcTransport = (response.data.transport * 100) / response.data.totalKg
+        const calcHome = (response.data.home * 100) / response.data.totalKg
 
-      setKgTotal(response.data.totalKg);
-      setFood(calcFood.toFixed(2));
-      setTransport(calcTransport.toFixed(2));
-      setHome(calcHome.toFixed(2));
-      setAlias(response.data.alias)
+        setKgTotal(response.data.totalKg);
+        setFood(calcFood.toFixed(2));
+        setTransport(calcTransport.toFixed(2));
+        setHome(calcHome.toFixed(2));
+        setAlias(response.data.alias)
+      } catch (err) {
+        console.log(err);
+      }
+
     }
     getData()
   }, [])
@@ -118,7 +123,7 @@ const Profile = () => {
     <div className="profile">
       <button className="button-engranaje" onClick={handleClick}>
 
-        <img src={iconEngranaje} />
+        <img src={iconEngranaje} alt="icono engranaje" />
       </button>
       <Menu
         id="basic-menu"
@@ -171,7 +176,7 @@ const Profile = () => {
           <img src={firstPlan} alt="plan" />
         </div>
 
-        <button onClick={() => history.push("/compensate")} className="button-compensar">Ver mis planes</button>
+        <Link to="/compensate"><button className="button-compensar">Ver todos los planes</button></Link>
 
       </div>
     </div>

@@ -1,0 +1,61 @@
+.zero{
+    margin: 40px auto;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+
+    h1{
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 36px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.02em;
+        color: $dark;
+
+        margin-bottom: 15px;
+    }
+
+    p{
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.02em;
+        
+        color: rgba(38, 38, 38, 0.7);
+    }
+
+    img{
+        margin: 20px 0;
+        display: block;
+    }
+
+    h2{
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 36px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.02em;
+        
+        color: #000000;
+    }
+
+    button{
+            border: none;
+            width: 100%;
+            height: 48px;
+            box-sizing: border-box;
+            border-radius: 20px;
+            background: $acento;
+            font-weight: bold;
+            color: white;
+            font-size: 16px;
+            margin: 26px 0;
+            margin-bottom: 80px;
+    }
+}

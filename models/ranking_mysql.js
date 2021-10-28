@@ -9,7 +9,7 @@ const ranking = {
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             } 
         })
     },

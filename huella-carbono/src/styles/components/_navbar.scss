@@ -1,7 +1,9 @@
 .nav-bar {
     height: 60px;
     width: 100%;
-    background-color: $primario-light;
+    background: #FFFFFF;
+    box-shadow: 1px 0px 6px rgba(130, 130, 130, 0.25);
+    border-radius: 20px 20px 0px 0px;
     position: absolute;
     position: fixed;
     left: 0;

@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import { useHistory } from 'react-router-dom'
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 
@@ -9,141 +10,125 @@ const columns = [
   {
     name: 'Posición',
     selector: row => row.position,
+    width: 'auto',
+    center: true,
   },
   {
     name: 'Alias',
     selector: row => row.alias,
+    width: 'auto',
+    center: true,
   },
   {
     name: 'Ciudad',
     selector: row => row.city,
+    width: 'auto',
+    center: true,
   },
   {
     name: 'CO2',
     selector: row => row.co2,
+    width: 'auto',
+    center: true,
   },
 ];
-
-const data = [
-  {
-    
-    position: 1,
-    alias: 'Guillem',
-    city: 'Madrid',
-    co2: '5920 kg',
-  },
-  {
-    
-    position: 2,
-    alias: 'CainNito',
-    city: 'Madrid',
-    co2: '1245 kg',
-  },
-  {
-    id: 3,
-    position: 3,
-    alias: 'CainNito',
-    city: 'Madrid',
-    co2: '1245 kg',
-  },
-  {
-    id: 4,
-    position: 4,
-    alias: 'CainNito',
-    city: 'Madrid',
-    co2: '1245 kg',
-  },
-  {
-    id: 5,
-    position: 5,
-    alias: 'CainNito',
-    city: 'Madrid',
-    co2: '1245 kg',
-  },
-]
 
 const customStyles = {
   rows: {
-      style: {
-          minHeight: '72px',
-          // textAlign: 'center'
-          // background: 'red'
-      },
-  },
-  headCells: {
-      style: {
-          paddingLeft: '8px', // override the cell padding for head cells
-          paddingRight: '8px',
-          // textAlign: 'center'
-      },
-  },
-  cells: {
-      style: {
-          paddingLeft: '8px', // override the cell padding for data cells
-          paddingRight: '8px',
-          // textAlign: 'center'
-      },
-  },
-};
-
-const conditionalRowStyles = [
-  {
-    when: row => row.position === 1,
     style: {
-      backgroundColor: 'green',
-      color: 'white',
-      '&:hover': {
-        cursor: 'pointer',
-      },
+      minHeight: '72px',
+      background: '#F7FBEE'
     },
   },
-];
+  headCells: {
+    style: {
+      paddingLeft: '8px', // override the cell padding for head cells
+      paddingRight: '8px',
+    },
+  },
+  cells: {
+    style: {
+      paddingLeft: '8px', // override the cell padding for data cells
+      paddingRight: '8px',
+    },
+  },
+  columns: {
+    width: 'auto'
+  }
+};
+
 
 const Ranking = () => {
 
+  const history = useHistory()
+
   // Context
-  const { user, setUser } = useContext(userContext);
-  const [datainfo, setData] = useState(0);
+  const { user } = useContext(userContext);
+  const [datainfo, setData] = useState({});
+  const [city, setCity] = useState(false)
 
 
   useEffect(() => {
-    async function getData() {
-      const response = await axios.post('http://localhost:3001/ranking/ranking-data', {
-        token: user
-      });
-      
-      setData(response.data)
+    if (user === null) {
+      history.push('/')
+    } else {
 
+      async function getData() {
+
+        try {
+          const { data } = await axios.post('/ranking/ranking-data', {
+            token: user
+          });
+
+          setData(data)
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      getData()
     }
-    getData()
+
   }, [])
-   console.log("estado", datainfo);
+  
+
+  const conditionalRowStyles = [
+    {
+      when: row => row.position === datainfo.positionUser,
+      style: {
+        backgroundColor: '#80AE09',
+        color: 'white',
+        '&:hover': {
+          cursor: 'pointer',
+        },
+      },
+    },
+  ];
+  
+  
   return (
-    <>
-    {user ? 
+    <div className="ranking-conteiner">
       <div className="ranking">
-      <h1>Ranking</h1>
+        <h1>Ranking</h1>
+        <p>Mira cómo vas subiendo de puestos al reducir tu huella</p>
+
+        <div>
+          <button className={`${city ? 'desactivated' : ''}`} onClick={() => setCity(false)}>España</button>
+          <button className={`${city ? '' : 'desactivated'}`} onClick={() => setCity(true)}>{datainfo.userCity}</button>
+        </div>
+
+      </div>
       <DataTable
-            columns={columns}
-            data={datainfo}
-            customStyles={customStyles}
-            conditionalRowStyles={conditionalRowStyles}
-            pagination
-        />
-    </div> : 
-    <div className="ranking">
-      <h1>Ranking</h1>
-      <DataTable
-            columns={columns}
-            data={data}
-            customStyles={customStyles}
-            conditionalRowStyles={conditionalRowStyles}
-            pagination
-        />
+        columns={columns}
+        data={city
+          ? datainfo.localFromUser
+          : datainfo.allSpain
+        }
+        customStyles={customStyles}
+        conditionalRowStyles={conditionalRowStyles}
+        striped
+      // pagination
+      />
     </div>
-   }
-   </>
-    
   );
 };
 

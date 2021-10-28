@@ -4,28 +4,53 @@ const jwt = require('jsonwebtoken')
 const rankingController = {
 
     getRanking: async (req, res) => {
-        const {token} = req.body
+        const { token } = req.body
 
-        try{
+        try {
             const user = jwt.verify(token, process.env.JWT)
-            //console.log("hace peticion pero no token");
-            
+
             const newInfo = await ranking.getRankingData(user.id)
 
-            const filtrado = newInfo.map( (ele, index ) => { 
+            const ordenado = newInfo.map((ele, index) => {
                 return {
-                    position: index, 
                     alias: ele.USER_NAME,
                     city: ele.CITY,
-                    co2: ele.FOOD+ele.HOME+ele.TRANSPORT,
+                    co2: (ele.FOOD + ele.HOME + ele.TRANSPORT),
+                }
+            }).sort((a, b) => {
+                let x = a.co2;
+                let y = b.co2;
+
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            }).map((el, index) => {
+                const codosString = el.co2.toString()
+                return {
+                    position: (index + 1),
+                    co2: codosString + ' kg',
+                    city: el.city,
+                    alias: el.alias,
                 }
             })
-            console.log("new Info",filtrado);
 
-            res.status(200).send(filtrado)
-        } catch(err){
-            res.status(400).send({message: err})
-        } 
+            const [selectUser] = ordenado.filter(el => {
+                if (el.alias === user.username) {
+                    return el.position
+                }
+            })
+            const positionUser = selectUser.position
+
+            const localFromUser = ordenado.filter(el => el.city === user.city)
+
+            res.status(200).send({
+                positionUser ,
+                allSpain: ordenado,
+                localFromUser,
+                userCity: user.city,
+            })
+
+        } catch (err) {
+            res.status(400).send({ message: err })
+        }
     },
 }
 

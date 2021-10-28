@@ -27,7 +27,7 @@ const Login = () => {
     const { email, password } = data
 
     try {
-      const response = await axios.post('http://localhost:3001/auth/login', {
+      const response = await axios.post('/auth/login', {
         email,
         password
       })
@@ -37,13 +37,10 @@ const Login = () => {
       sessionStorage.setItem('token', token)
       setUser(token)
     } catch (err) {
-      console.log(err.response.status);
       if (err.response.status === 401) {
         setError('apiError', { message: 'El email o contraseña son incorrectos' })
       }
     }
-
-
   }
 
 
@@ -51,7 +48,7 @@ const Login = () => {
     <>
       {
         user
-          ? <Redirect to="/" />
+          ? <Redirect to="/profile" />
           : <div className="login">
             <form className="form-login" onSubmit={handleSubmit(onSubmit)}>
               <h1>Accede a tu perfil</h1>

@@ -3,7 +3,6 @@ import { Redirect, Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import LoginGoogle from "../LoginGoogle";
 import { useForm } from "react-hook-form";
-import InitialForm from "../InitialForm"
 
 // Mui
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -45,14 +44,10 @@ const Register = () => {
         sessionStorage.setItem('token', token)
         setUser(token)
 
-        console.log('registro con exito');
-
-        history.push('/initial-form')
-        
+        history.push('/welcome')
       }
 
     } catch (err) {
-      console.log(err.response.status);
       if (err.response.status === 400) {
         setError('apiError', { message: 'El email que intentas registrar ya esta en uso' })
       }
@@ -65,7 +60,7 @@ const Register = () => {
     <>
       {
         user
-          ? <Redirect to="/" />
+          ? <Redirect to="/profile" />
           : <div className="register">
             <form className="form-register" onSubmit={handleSubmit(onSubmit)}>
               <h1>Crea tu cuenta</h1>

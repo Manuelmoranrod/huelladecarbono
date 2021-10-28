@@ -8,11 +8,11 @@ const users = {
             try {
                 conexionSQL.query('INSERT INTO USER (USER_NAME, PASSWORD, MAIL, CITY) VALUES (?,?,?,?)', [username, password, email, city], function (err, results, fields) {
                     if (err) return reject(err);
-                    // console.log('results model', results);
+                    
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             } 
         })
     },
@@ -22,11 +22,11 @@ const users = {
             try {
                 conexionSQL.query('INSERT INTO USER (MAIL, PASSWORD) VALUES (?,?)', [email, password], function (err, results, fields) {
                     if (err) return reject(err);
-                    console.log('results model', results);
+                    
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             } 
         })
     },
@@ -36,11 +36,11 @@ const users = {
             try {
                 conexionSQL.query('SELECT * FROM USER', function (err, results, fields) {
                     if (err) return reject(err);
-                    console.log(results);
+                    
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             }
         })
     },
@@ -50,11 +50,11 @@ const users = {
             try {
                 conexionSQL.query('SELECT * FROM USER WHERE MAIL=?', [email], function (err, results, fields) {
                     if (err) return reject(err);
-                    // console.log('results getonlyoneuser', results);
+                   
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             } 
         })
     },
@@ -64,11 +64,11 @@ const users = {
             try {
                 conexionSQL.query('DELETE FROM USER', function (err, results, fields) {
                     if (err) return reject(err);
-                    console.log(results);
+                    
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             }
         })
     },
@@ -78,23 +78,17 @@ const users = {
             try {
                 conexionSQL.query('UPDATE USER SET USER_NAME=?, CITY=? WHERE ID=?', [username, city, id] , function (err, results, fields) {
                     if (err) return reject(err);
-                    console.log('results getonlyoneuser', results);
+                    
                     return resolve(results)
                 })
             } catch (err) {
-                console.log(err);
+                throw err;
             } 
         })
     },
 
     
 }
-
-
-// users.createUser('usernametwo', 'password', 'email', 'city')
-// users.getAllUsers()
-// users.clearUserTable()
-// users.createTable()
 
 
 module.exports = users
