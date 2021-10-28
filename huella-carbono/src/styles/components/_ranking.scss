@@ -1,0 +1,49 @@
+.ranking{
+    width: 90%;
+    margin: 50px auto;
+    margin-bottom: 30px;
+
+    h1{
+        color: $acento;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 36px;
+        /* identical to box height */
+        
+        letter-spacing: 0.02em;
+    }
+
+    p{
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.02em;
+        color: $dark;
+        margin-top: 15px;
+    }
+
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-top: 20px;
+
+        button{
+            font-weight: bold;
+            background: transparent;
+            border: none;
+            font-size: 22px;
+            letter-spacing: 0.02em;
+            color: #62AD00;
+        }
+
+        .desactivated{
+            color: $dark;
+
+        }
+    }
+}
+
+.ranking-conteiner{
+    margin-bottom: 80px;
+}
